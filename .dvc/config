@@ -1,0 +1,4 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = s3://damg7245-codeofduty3/lantern-lab2b
