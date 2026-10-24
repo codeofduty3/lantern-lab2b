@@ -1,0 +1,6 @@
+stages:
+  acquire:   {cmd: python scripts/acquire.py,   deps: [scripts/acquire.py, params.yaml], outs: [data/raw]}
+  parse:     {cmd: python scripts/parse.py,     deps: [scripts/parse.py, data/raw], outs: [outputs/canonical]}
+  clean:     {cmd: python scripts/clean.py,     deps: [scripts/clean.py, outputs/canonical], outs: [outputs/cleaned]}
+  reconcile: {cmd: python scripts/reconcile.py, deps: [scripts/reconcile.py, outputs/cleaned], params: [reconcile.tolerance],
+              outs: [outputs/panel], metrics: [{reports/coverage.json: {cache: false}}]}
