@@ -1,5 +1,6 @@
 # Lab 2B / Case Study 2B parameters. Every notebook and script reads this file.
-release: "2026_08"            # your team's assigned release (Case Study 2B, Section 4)
+release: "2026q3"             # Team 3's assigned quarter (Canvas)
+release_months: ["2026_07", "2026_08", "2026_09"]   # the SEC's monthly ZIPs for 2026q3
 data:
   use_fixture: false          # start offline on the synthetic fixture; set false after notebook 02
   raw_dir: data/raw
