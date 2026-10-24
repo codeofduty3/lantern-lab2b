@@ -1,0 +1,257 @@
+column,kind,field,tags,versions,custom,rows,filings
+adsh,metadata,,,,,101220,177
+cik,metadata,,,,,101220,177
+name,metadata,,,,,101220,177
+ddate,metadata,,,,,101220,177
+qtrs,metadata,,,,,101220,177
+form,metadata,,,,,101220,177
+filed,metadata,,,,,101220,177
+period,metadata,,,,,101220,177
+inlineurl,metadata,,,,,101220,177
+cstm,metadata,,,,,101220,177
+Industry Sector Axis,axis,,,,,10096,157
+"Investment, Identifier Axis",axis,,,,,77960,175
+"Investment, Issuer Affiliation Axis",axis,,,,,5160,147
+Investment Type Axis,axis,,,,,8764,167
+Investment Interest Rate,mapped,interest_rate,InvestmentInterestRate,us-gaap/2025;us-gaap/2026,0,39876,151
+"Investment, Basis Spread, Variable Rate",mapped,spread,InvestmentBasisSpreadVariableRate,us-gaap/2025;us-gaap/2026,0,45778,154
+Investment Maturity Date,mapped,maturity,InvestmentMaturityDate,us-gaap/2025;us-gaap/2026,0,25762,104
+"Investment Owned, Balance, Principal Amount",mapped,principal,InvestmentOwnedBalancePrincipalAmount,us-gaap/2025;us-gaap/2026,0,54100,172
+"Investment Owned, Cost",mapped,cost,InvestmentOwnedAtCost,us-gaap/2025,0,0,0
+"Investment Owned, Fair Value",mapped,fair_value,InvestmentOwnedAtFairValue,us-gaap/2025,0,0,0
+"Investment Owned, Net Assets, Percentage",mapped,pct_net_assets,InvestmentOwnedPercentOfNetAssets,us-gaap/2025;us-gaap/2026,0,41782,159
+Asset Class Axis,axis,,,,,533,30
+Cash and Cash Equivalents Axis,axis,,,,,141,62
+Class of Stock Axis,axis,,,,,90,6
+Concentration Risk Benchmark Axis,axis,,,,,655,21
+Concentration Risk Type Axis,axis,,,,,675,21
+Consolidated Entities Axis,axis,,,,,185,5
+Consolidation Items Axis,axis,,,,,47,2
+Customer Axis,axis,,,,,15,6
+Debt Instrument Axis,axis,,,,,216,29
+"Equity Method Investment, Nonconsolidated Investee Axis",axis,,,,,8,5
+Fair Value Hierarchy and NAV Axis,axis,,,,,2725,140
+Financial Instrument Axis,axis,,,,,2370,99
+Geographical Axis,axis,,,,,1813,105
+"Investment Company, Nonconsolidated Subsidiary Axis",axis,,,,,1939,26
+"Investment, Issuer Name Axis",axis,,,,,4299,51
+"Investment, Name Axis",axis,,,,,581,30
+Legal Entity Axis,axis,,,,,804,30
+Lender Name Axis,axis,,,,,2,1
+"Long-term Debt, Type Axis",axis,,,,,87,12
+Measurement Input Type Axis,axis,,,,,525,66
+"Open Forward Foreign Currency Contract, Identifier Axis",axis,,,,,1013,39
+Range Axis,axis,,,,,650,36
+Related Party Axis,axis,,,,,67,16
+Related Party Transaction Axis,axis,,,,,5,2
+Segments Axis,axis,,,,,2,1
+Valuation Approach and Technique Axis,axis,,,,,1000,99
+Adjusted cost basis,mapped,cost,InvestmentOwnedAtCost,us-gaap/2026,0,73547,172
+Cash equivalents,unmapped,,CashEquivalentsAtCarryingValue,us-gaap/2026,0,66,29
+"Derivative Asset, Gross Asset Including Not Subject to Master Netting Arrangement",unmapped,,DerivativeAssetFairValueGrossAssetIncludingNotSubjectToMasterNettingArrangement,us-gaap/2025;us-gaap/2026,0,64,8
+"Derivative Asset, Notional Amount",unmapped,,DerivativeAssetNotionalAmount,us-gaap/2025;us-gaap/2026,0,630,40
+"Derivative Liability, Notional Amount",unmapped,,DerivativeLiabilityNotionalAmount,us-gaap/2025;us-gaap/2026,0,571,34
+"Derivative, Contract End Date",unmapped,,DerivativeMaturityDates,us-gaap/2025;us-gaap/2026,0,475,29
+Initial fair value of Investment,mapped,fair_value,InvestmentOwnedAtFairValue,us-gaap/2026,0,81930,176
+Investment shares,unmapped,,InvestmentOwnedBalanceShares,us-gaap/2026,0,7912,133
+"Investment, Acquisition Date",unmapped,,InvestmentAcquisitionDate,us-gaap/2025;us-gaap/2026,0,8314,74
+"Investment, Interest Rate, Floor",unmapped,,InvestmentInterestRateFloor,us-gaap/2025;us-gaap/2026,0,11715,65
+"Investment, Interest Rate, Paid in Cash",unmapped,,InvestmentInterestRatePaidInCash,us-gaap/2025;us-gaap/2026,0,2856,25
+"Investment, Interest Rate, Paid in Kind",mapped,pik_rate,InvestmentInterestRatePaidInKind,us-gaap/2025;us-gaap/2026,0,6380,150
+"Investment, Variable Interest Rate, Type [Extensible Enumeration]",unmapped,,InvestmentVariableInterestRateTypeExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,22289,91
+Security deposit remaining,unmapped,,MoneyMarketFundsAtCarryingValue,us-gaap/2026,0,103,36
+source_release,metadata,,,,,101220,177
+source_soi_row,metadata,,,,,101220,177
+Agreement,unmapped,,,,,1,1
+Asset Acquisition Axis,axis,,,,,0,0
+Award Date Axis,axis,,,,,1,1
+Award Type Axis,axis,,,,,177,2
+Balance Sheet Location Axis,axis,,,,,4,1
+Business Acquisition Axis,axis,,,,,7,2
+Class of Financing Receivable Axis,axis,,,,,1,1
+Collaborative Arrangement and Arrangement Other than Collaborative Axis,axis,,,,,5,2
+Collateral Held Axis,axis,,,,,3,3
+Counterparty Name Axis,axis,,,,,207,17
+Credit Facility Axis,axis,,,,,405,9
+"Credit Rating, Standard & Poor's Axis",axis,,,,,10,2
+CreditFacilityUsage,unmapped,,,,,3,1
+Currency Axis,axis,,,,,3,2
+"Debt Instrument, Redemption, Period Axis",axis,,,,,6,2
+Derivative Instrument Axis,axis,,,,,550,44
+Equity Components Axis,axis,,,,,33,8
+Equity Interest Type Axis,axis,,,,,0,0
+ExemptSecurity,unmapped,,,,,1,1
+Financial Instrument Performance Status Axis,axis,,,,,4,2
+Financial Support to Nonconsolidated Legal Entity Axis,axis,,,,,66,12
+FinancingReceivableName,unmapped,,,,,3,1
+Hedging Designation Axis,axis,,,,,73,6
+Hedging Relationship Axis,axis,,,,,2,1
+InterestRatePeriod,unmapped,,,,,7,2
+Investee,unmapped,,,,,383,2
+Investment Axis,axis,,,,,38,1
+Investment Objective Axis,axis,,,,,33,1
+InvestmentBasisSpreadVariableRate,unmapped,,,,,36,2
+InvestmentHoldings,unmapped,,,,,25,1
+InvestmentInterestRateFloor,unmapped,,,,,2,2
+InvestmentPerformanceStatus,unmapped,,,,,1,1
+InvestmentsClassificationByIndustry,unmapped,,,,,8,1
+InvestmentSecondaryCategorization1,unmapped,,,,,139,1
+InvestmentsIdentifier,unmapped,,,,,457,1
+InvestmentSubType,unmapped,,,,,4,1
+InvestmentVariableRateBasis,unmapped,,,,,3,1
+Lien Category Axis,axis,,,,,2,1
+LocationStatementsOfFinancialPositionBalance,unmapped,,,,,5,1
+Long-Lived Tangible Asset Axis,axis,,,,,8,1
+Loss Contingency Nature Axis,axis,,,,,6,4
+Measurement Basis Axis,axis,,,,,12,3
+Measurement Frequency Axis,axis,,,,,229,14
+Netting,unmapped,,,,,1,1
+"Open Option Contract, Identifier Axis",axis,,,,,12,2
+"Open Swap Contract, Identifier Axis",axis,,,,,341,29
+Option Indexed to Issuer's Equity Axis,axis,,,,,1,1
+"Option Indexed to Issuer's Equity, Type Axis",axis,,,,,2,1
+Other Commitments Axis,axis,,,,,10,1
+Ownership Axis,axis,,,,,171,8
+Plan Name Axis,axis,,,,,0,0
+Pledged Status Axis,axis,,,,,7,2
+Pledging Purpose Axis,axis,,,,,6,2
+Position Axis,axis,,,,,20,1
+PreviousValuationAndTechnique,unmapped,,,,,17,3
+Products and Services Axis,axis,,,,,22,1
+RateType,unmapped,,,,,8,2
+"Real Estate, Type of Property Axis",axis,,,,,14,1
+Regulatory Agency Axis,axis,,,,,4,1
+"Repurchase Agreements and Similar Transactions, Maturity Periods Axis",axis,,,,,0,0
+Research and Development Assets Acquired Other than Through Business Combination by Transaction Axis,axis,,,,,5,2
+Scenario Axis,axis,,,,,1,1
+"Security Owned and Sold, Not yet Purchased, at Fair Value Axis",axis,,,,,6,5
+Servicing Assets and Servicing Liabilities Risk Axis,axis,,,,,3,1
+Share Repurchase Program Axis,axis,,,,,2,1
+"Short-term Debt, Type Axis",axis,,,,,64,2
+Subsequent Event Type Axis,axis,,,,,6,5
+Title of Individual Axis,axis,,,,,3,1
+Trading Activity Axis,axis,,,,,22,3
+TypeOfIndustry,unmapped,,,,,16,1
+Variable Rate Axis,axis,,,,,253,22
+VariableRateComponent,unmapped,,,,,0,0
+Voyatek,unmapped,,,,,1,1
+"Additions to Other Assets, Amount",unmapped,,AdditionsToOtherAssetsAmount,us-gaap/2026,0,2,2
+Cash and cash equivalents,unmapped,,CashAndCashEquivalentsAtCarryingValue,us-gaap/2026,0,41,13
+"Cash and Cash Equivalents, Fair Value Disclosure",unmapped,,CashAndCashEquivalentsFairValueDisclosure,us-gaap/2025;us-gaap/2026,0,80,21
+Cash deposits,unmapped,,Cash,us-gaap/2026,0,5,3
+"Cash, Cash Equivalent, Restricted Cash, and Restricted Cash Equivalent, Continuing Operation",unmapped,,CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,us-gaap/2025;us-gaap/2026,0,0,0
+"Cash, Cash Equivalents, and Short-Term Investments",unmapped,,CashCashEquivalentsAndShortTermInvestments,us-gaap/2025;us-gaap/2026,0,0,0
+Change in Unrealized Gain (Loss) on Fair Value Hedging Instruments,unmapped,,ChangeInUnrealizedGainLossOnFairValueHedgingInstruments;ChangeInUnrealizedGainLossOnFairValueHedgingInstruments1,0001628280-26-056793;us-gaap/2025;us-gaap/2026,0;1,2,2
+Changes in fair value of warrant and derivative liabilities,unmapped,,DerivativeGainLossOnDerivativeNet,us-gaap/2026,0,63,8
+"Commitments, Fair Value Disclosure",unmapped,,CommitmentsFairValueDisclosure,us-gaap/2025;us-gaap/2026,0,75,1
+Concentration percentage,unmapped,,ConcentrationRiskPercentage1,us-gaap/2026,0,573,13
+Credit line maximum,unmapped,,LineOfCreditFacilityMaximumBorrowingCapacity,us-gaap/2026,0,1,1
+"Debt and Equity Securities, Realized Gain (Loss)",unmapped,,DebtAndEquitySecuritiesRealizedGainLoss,us-gaap/2025;us-gaap/2026,0,252,11
+"Debt and Equity Securities, Unrealized Gain (Loss)",unmapped,,DebtAndEquitySecuritiesUnrealizedGainLoss,us-gaap/2025;us-gaap/2026,0,271,11
+"Debt Instrument, Basis Spread on Variable Rate",unmapped,,DebtInstrumentBasisSpreadOnVariableRate1,us-gaap/2025;us-gaap/2026,0,97,9
+"Debt Instrument, Interest Rate During Period",unmapped,,DebtInstrumentInterestRateDuringPeriod,us-gaap/2025;us-gaap/2026,0,3,2
+"Debt Instrument, Interest Rate Terms",unmapped,,DebtInstrumentInterestRateTerms,us-gaap/2025;us-gaap/2026,0,49,1
+"Debt Instrument, Variable Interest Rate, Type [Extensible Enumeration]",unmapped,,DebtInstrumentVariableInterestRateTypeExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,2,1
+"Derivative and Foreign Currency Transaction Price Change, Realized Gain (Loss), Operating, before Tax",unmapped,,,,,132,3
+"Derivative and Foreign Currency Transaction Price Change, Unrealized Gain (Loss), Operating, before Tax",unmapped,,,,,171,5
+Derivative Asset,unmapped,,DerivativeAssets,us-gaap/2025;us-gaap/2026,0,64,10
+"Derivative Asset, Counterparty Name [Extensible Enumeration]",unmapped,,DerivativeAssetCounterpartyNameExtensibleList,us-gaap/2026,0,0,0
+"Derivative Asset, Not Subject to Master Netting Arrangement",unmapped,,DerivativeAssetNotSubjectToMasterNettingArrangement,us-gaap/2025,0,1,1
+"Derivative Asset, Subject to Master Netting Arrangement, after Offset",unmapped,,DerivativeAssetAfterOffsetSubjectToMasterNettingArrangement,us-gaap/2026,0,11,1
+"Derivative Asset, Subject to Master Netting Arrangement, before Offset",unmapped,,DerivativeFairValueOfDerivativeAsset,us-gaap/2025;us-gaap/2026,0,58,3
+"Derivative Asset, Subject to Master Netting Arrangement, Collateral, Obligation to Return Cash, Offset Against Derivative Asset",unmapped,,DerivativeAssetCollateralObligationToReturnCashOffset,us-gaap/2025;us-gaap/2026,0,11,1
+"Derivative Asset, Subject to Master Netting Arrangement, Liability Offset",unmapped,,DerivativeAssetFairValueGrossLiability,us-gaap/2025;us-gaap/2026,0,224,15
+"Derivative Asset, Type [Extensible Enumeration]",unmapped,,DerivativeAssetTypeExtensibleList,us-gaap/2025;us-gaap/2026,0,14,1
+Derivative Liability,unmapped,,DerivativeLiabilities,us-gaap/2025;us-gaap/2026,0,77,12
+"Derivative Liability, Gross Liability Including Not Subject to Master Netting Arrangement",unmapped,,DerivativeLiabilityFairValueGrossLiabilityIncludingNotSubjectToMasterNettingArrangement,us-gaap/2026,0,0,0
+"Derivative Liability, Subject to Master Netting Arrangement, after Offset",unmapped,,DerivativeLiabilityAfterOffsetSubjectToMasterNettingArrangement,us-gaap/2025;us-gaap/2026,0,10,1
+"Derivative Liability, Subject to Master Netting Arrangement, Collateral, Right to Reclaim Cash Offset",unmapped,,DerivativeLiabilityCollateralRightToReclaimCashOffset,us-gaap/2026,0,11,2
+"Derivative, Basis Spread on Variable Rate",unmapped,,DerivativeBasisSpreadOnVariableRate,us-gaap/2025;us-gaap/2026,0,173,23
+"Derivative, Currency Bought",unmapped,,DerivativeCurrencyBought,us-gaap/2025;us-gaap/2026,0,1,1
+"Derivative, Currency Sold",unmapped,,DerivativeCurrencySold,us-gaap/2025;us-gaap/2026,0,1,1
+"Derivative, Description of Terms",unmapped,,DerivativeDescriptionOfTerms,us-gaap/2025;us-gaap/2026,0,14,3
+"Derivative, Fair Value, Net",unmapped,,DerivativeFairValueOfDerivativeNet,us-gaap/2025;us-gaap/2026,0,167,18
+"Derivative, Fixed Interest Rate",unmapped,,DerivativeFixedInterestRate,us-gaap/2025;us-gaap/2026,0,161,24
+"Derivative, Gain (Loss), Statement of Income or Comprehensive Income [Extensible Enumeration]",unmapped,,DerivativeGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,5,4
+"Derivative, Net Assets, Percentage",unmapped,,DerivativeNetAssetsPercentage,us-gaap/2026,0,2,1
+"Derivative, Notional Amount",unmapped,,DerivativeNotionalAmount,us-gaap/2025;us-gaap/2026,0,376,30
+"Derivative, Number of Instruments Held",unmapped,,DerivativeNumberOfInstrumentsHeld,us-gaap/2025;us-gaap/2026,0,3,1
+"Derivative, Premium Paid",unmapped,,DerivativePremiumPaid,us-gaap/2026,0,3,1
+"Derivative, Price Risk Option Strike Price",unmapped,,DerivativePriceRiskOptionStrikePrice,us-gaap/2025,0,3,1
+"Derivative, Swaption Interest Rate",unmapped,,DerivativeSwaptionInterestRate,us-gaap/2025,0,2,1
+"Derivative, Variable Interest Rate",unmapped,,DerivativeVariableInterestRate,us-gaap/2025;us-gaap/2026,0,8,3
+"Dividend Income, Operating",unmapped,,DividendIncomeOperating,us-gaap/2025;us-gaap/2026,0,230,10
+"Dividend Income, Operating, Paid in Cash",unmapped,,DividendIncomeOperatingPaidInCash,us-gaap/2025;us-gaap/2026,0,23,1
+Equity interest owned,unmapped,,EquityMethodInvestmentOwnershipPercentage,us-gaap/2026,0,13,5
+"Equity Method Investment, Additional Information",unmapped,,EquityMethodInvestmentAdditionalInformation,us-gaap/2026,0,38,1
+Equity Method Investments,unmapped,,EquityMethodInvestments,us-gaap/2025;us-gaap/2026,0,3,1
+"Equity Securities, FV-NI, Unrealized Gain (Loss)",unmapped,,EquitySecuritiesFvNiUnrealizedGainLoss,us-gaap/2026,0,11,1
+"Equity, Attributable to Parent",unmapped,,StockholdersEquity,us-gaap/2025;us-gaap/2026,0,4,2
+Exercise price,unmapped,,ClassOfWarrantOrRightExercisePriceOfWarrantsOrRights1,us-gaap/2026,0,72,1
+Fair value of derivative,unmapped,,DerivativeAssetsLiabilitiesAtFairValueNet,us-gaap/2026,0,41,5
+"Fair Value, Measurement with Unobservable Inputs Reconciliation, Recurring Basis, Asset Value",unmapped,,FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetValue,us-gaap/2025;us-gaap/2026,0,8,1
+"Fair Value, Measurement with Unobservable Inputs Reconciliation, Recurring Basis, Asset, Purchases",unmapped,,FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetPurchases,us-gaap/2025;us-gaap/2026,0,14,1
+"Fair Value, Measurement with Unobservable Inputs Reconciliation, Recurring Basis, Asset, Sales",unmapped,,FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetSales,us-gaap/2025;us-gaap/2026,0,14,1
+"Fair Value, Measurement with Unobservable Inputs Reconciliation, Recurring Basis, Asset, Transfers, Net",unmapped,,FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetTransfersNet,us-gaap/2025;us-gaap/2026,0,2,1
+"Fair Value, Net Asset (Liability)",unmapped,,FairValueNetAssetLiability,us-gaap/2025;us-gaap/2026,0,0,0
+Fee Income,unmapped,,FeeIncome,us-gaap/2025;us-gaap/2026,0,138,2
+"Foreign Currency Contract, Asset, Fair Value Disclosure",unmapped,,ForeignCurrencyContractAssetFairValueDisclosure,us-gaap/2025;us-gaap/2026,0,3,1
+"Interest and Dividend Income, Operating",unmapped,,InterestAndDividendIncomeOperating,us-gaap/2025;us-gaap/2026,0,4,1
+"Interest and Dividend Income, Securities, Operating",unmapped,,InterestAndDividendIncomeSecurities,us-gaap/2025;us-gaap/2026,0,209,11
+"Interest Income, Operating",unmapped,,InterestIncomeOperating,us-gaap/2025;us-gaap/2026,0,195,6
+"Interest Income, Operating, Paid in Cash",unmapped,,InterestIncomeOperatingPaidInCash,us-gaap/2025;us-gaap/2026,0,19,1
+"Interest Income, Operating, Paid in Kind",unmapped,,InterestIncomeOperatingPaidInKind,us-gaap/2025;us-gaap/2026,0,136,1
+"Interest Rate Derivatives, at Fair Value, Net",unmapped,,InterestRateDerivativesAtFairValueNet,us-gaap/2025;us-gaap/2026,0,20,4
+Interest receivable,unmapped,,InterestReceivable,us-gaap/2026,0,2,1
+"Interest-Earning Assets, Average Yield",unmapped,,InterestEarningAssetsAverageYield,srt/2025;srt/2026,0,3,1
+"Investment Company, Distributable Earnings (Loss), Accumulated Appreciation (Depreciation)",unmapped,,InvestmentCompanyDistributableEarningsLossAccumulatedAppreciationDepreciation,us-gaap/2025;us-gaap/2026,0,11,2
+"Investment Company, Financial Support to Investee Contractually Required, Amount",unmapped,,InvestmentCompanyFinancialSupportToInvesteeContractuallyRequiredAmount,us-gaap/2025;us-gaap/2026,0,1316,11
+"Investment Company, Financial Support to Investee Contractually Required, Not Provided, Amount",unmapped,,InvestmentCompanyFinancialCommitmentToInvesteeFutureAmount,us-gaap/2025;us-gaap/2026,0,4624,30
+"Investment Company, Financial Support, Type [Extensible Enumeration]",unmapped,,InvestmentCompanyFinancialSupportTypeExtensibleEnumeration,us-gaap/2025,0,166,3
+"Investment Company, Market Value Per Share",unmapped,,,,,199,1
+"Investment Owned, Face Amount",unmapped,,InvestmentOwnedUnderlyingFaceAmountAtMarketValue,us-gaap/2025;us-gaap/2026,0,444,4
+"Investment Owned, Foreign Currency Contract, Current Value",unmapped,,InvestmentOwnedForeignCurrencyContractReportingCurrencyAmountCurrentValue,us-gaap/2026,0,3,1
+"Investment, Industry Sector [Extensible Enumeration]",unmapped,,InvestmentIndustrySectorExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,2337,9
+"Investment, Issuer Affiliation [Extensible Enumeration]",unmapped,,InvestmentIssuerAffiliationExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,1135,8
+"Investment, Issuer Geographic Region [Extensible Enumeration]",unmapped,,InvestmentIssuerGeographicRegionExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,1174,6
+"Investment, Issuer Name [Extensible Enumeration]",unmapped,,InvestmentIssuerNameExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,1975,13
+"Investment, Non-income Producing [true false]",unmapped,,,,,1046,5
+"Investment, Restriction Status [true false]",unmapped,,InvestmentRestrictionStatus,us-gaap/2025;us-gaap/2026,0,233,2
+"Investment, Significant Unobservable Input [true false]",unmapped,,InvestmentSignificantUnobservableInput,us-gaap/2025;us-gaap/2026,0,1105,6
+"Investment, Tax Basis, Unrealized Gain",unmapped,,TaxBasisOfInvestmentsGrossUnrealizedAppreciation,us-gaap/2025;us-gaap/2026,0,0,0
+"Investment, Tax Basis, Unrealized Gain (Loss)",unmapped,,TaxBasisOfInvestmentsUnrealizedAppreciationDepreciationNet,us-gaap/2025;us-gaap/2026,0,3,1
+"Investment, Tax Basis, Unrealized Loss",unmapped,,TaxBasisOfInvestmentsGrossUnrealizedDepreciation,us-gaap/2025;us-gaap/2026,0,0,0
+"Investment, Type [Extensible Enumeration]",unmapped,,InvestmentTypeExtensibleEnumeration,us-gaap/2025;us-gaap/2026,0,1675,10
+Investments,unmapped,,Investments,us-gaap/2025;us-gaap/2026,0,274,2
+"Investments in and Advances to Affiliates, at Fair Value, Gross Additions",unmapped,,InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossAdditions,us-gaap/2025;us-gaap/2026,0,471,23
+"Investments in and Advances to Affiliates, at Fair Value, Gross Reductions",unmapped,,InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossReductions,us-gaap/2025;us-gaap/2026,0,406,19
+"Investments in and Advances to Affiliates, at Fair Value, Period Increase (Decrease)",unmapped,,InvestmentsInAndAdvancesToAffiliatesAtFairValuePeriodIncreaseDecrease,us-gaap/2025;us-gaap/2026,0,5,1
+"Investments, Fair Value Disclosure",unmapped,,InvestmentsFairValueDisclosure,us-gaap/2025;us-gaap/2026,0,247,2
+"Limited Liability Company or Limited Partnership, Members or Limited Partners, Ownership Interest",unmapped,,LimitedLiabilityCompanyLLCOrLimitedPartnershipLPMembersOrLimitedPartnersOwnershipInterest,us-gaap/2025;us-gaap/2026,0,67,1
+"Line of Credit Facility, Unused Capacity, Commitment Fee Percentage",unmapped,,LineOfCreditFacilityUnusedCapacityCommitmentFeePercentage,us-gaap/2025;us-gaap/2026,0,7,1
+"Loans Receivable, Basis Spread on Variable Rate",unmapped,,LoansReceivableBasisSpreadOnVariableRate,us-gaap/2025;us-gaap/2026,0,5,2
+Net Assets,unmapped,,AssetsNet,us-gaap/2025;us-gaap/2026,0,0,0
+"Noninvestment Asset Less Noninvestment Liability, Percent of Net Asset",unmapped,,NonInvestmentAssetsLessNonInvestmentLiabilitiesPercentOfNetAssets,us-gaap/2025;us-gaap/2026,0,0,0
+Noninvestment Assets Less Noninvestment Liabilities,unmapped,,NonInvestmentAssetsLessNonInvestmentLiabilities,us-gaap/2025;us-gaap/2026,0,3,2
+Other income,unmapped,,OtherIncome;OtherOperatingIncome,us-gaap/2026,0,67,4
+Paid-in-Kind Interest,unmapped,,PaidInKindInterest,us-gaap/2025;us-gaap/2026,0,2,1
+"Payments for (Proceeds from) Derivative Instrument, Financing Activities",unmapped,,PaymentsForProceedsFromDerivativeInstrumentFinancingActivities,us-gaap/2025;us-gaap/2026,0,18,4
+"Payments for (Proceeds from) Hedge, Financing Activities",unmapped,,PaymentsForProceedsFromHedgeFinancingActivities,us-gaap/2025,0,3,1
+Payments for (Proceeds from) Investments,unmapped,,PaymentsForProceedsFromInvestments,us-gaap/2025;us-gaap/2026,0,46,3
+"Payments for Purchase of Investment, Operating Activity",unmapped,,,,,5,5
+"Preferred Stock, Dividend Rate, Percentage",unmapped,,PreferredStockDividendRatePercentage,us-gaap/2025;us-gaap/2026,0,9,4
+"Proceeds from Disposition of Investment, Operating Activity",unmapped,,ProceedsFromDispositionOfInvestmentOperatingActivity,us-gaap/2025;us-gaap/2026,0,5,5
+Recognized gain (loss),unmapped,,RealizedInvestmentGainsLosses,us-gaap/2026,0,36,5
+"Reductions in Other Assets, Amount",unmapped,,ReductionsInOtherAssetsAmount,us-gaap/2026,0,2,2
+"Restricted Cash and Cash Equivalent, Current",unmapped,,RestrictedCashAndCashEquivalentsAtCarryingValue,us-gaap/2025;us-gaap/2026,0,0,0
+"Restricted Investments, at Fair Value",unmapped,,RestrictedInvestmentsAtFairValue,us-gaap/2025;us-gaap/2026,0,2,2
+"Restricted Investments, Percent of Net Assets",unmapped,,RestrictedInvestmentsPercentOfNetAssets,us-gaap/2025;us-gaap/2026,0,1,1
+"Securities Borrowed, Counterparty Name [Extensible Enumeration]",unmapped,,SecuritiesBorrowedCounterpartyNameExtensibleList,us-gaap/2025,0,2,1
+Short-Term Investments,unmapped,,ShortTermInvestments,us-gaap/2025;us-gaap/2026,0,5,4
+Strike Price,unmapped,,SharePrice,us-gaap/2026,0,1,1
+Tax basis,unmapped,,TaxBasisOfInvestmentsCostForIncomeTaxPurposes,us-gaap/2026,0,0,0
+Unrealized Gain (Loss) on Derivatives,unmapped,,UnrealizedGainLossOnDerivatives,us-gaap/2025;us-gaap/2026,0,297,13
+Unrealized Gain (Loss) on Investments,unmapped,,UnrealizedGainLossOnInvestments,us-gaap/2025;us-gaap/2026,0,49,5
+Warrants expiration date,unmapped,,WarrantsAndRightsOutstandingMaturityDate,us-gaap/2026,0,1,1
+"Weighted Average Rate Domestic Deposit, Money Market",unmapped,,WeightedAverageRateDomesticDepositMoneyMarket,us-gaap/2025,0,5,1
+ConcentrationVariableAxis,axis,,,,,15,1

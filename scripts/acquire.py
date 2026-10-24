@@ -3,6 +3,8 @@
 Team 3's release is the quarter 2026q3, published by the SEC as three monthly ZIPs
 (params.yaml: release_months). Each one is downloaded once, unpacked into
 data/raw/<month>_bdc/, and recorded in the manifest with its URL, size, SHA-256 and date.
+The months are then combined into one quarterly folder, data/raw/<release>_bdc/,
+which every later stage (and the self-check) reads.
 
 Run from the repo root:  python scripts/acquire.py
 """
@@ -13,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from lookthrough import paths, acquire  # noqa: E402
+from lookthrough import paths, acquire, quarter  # noqa: E402
 
 P = paths.load_params(ROOT)
 if P["data"]["use_fixture"]:
@@ -52,3 +54,9 @@ print()
 for r in rows:
     print(f"{r['release']}  {r['bytes']:>12,} bytes  sha256 {r['sha256'][:16]}...")
 print("Manifest verifies:", bad == [])
+
+if len(months) > 1:
+    print(f"\nCombining {len(months)} months into data/raw/{P['release']}_bdc (about a minute) ...")
+    q = quarter.build_quarter(raw, months, P["release"])
+    print(f"{q['release']}: {q['filings']} filings {q['filings_by_month']}, "
+          f"{q['soi_rows']:,} SOI rows, {q['soi_columns']} SOI columns")
