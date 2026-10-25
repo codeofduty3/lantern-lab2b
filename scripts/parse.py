@@ -6,7 +6,7 @@
 4. Count holdings with conflicting values and record how each was resolved.
 
 Writes:
-  outputs/interim/holdings.parquet   one row per holding and date (all dates; is_current flags
+  outputs/canonical/holdings.parquet   one row per holding and date (all dates; is_current flags
                                      the current period), input to cleaning and reconciliation
   reports/periods.csv                SOI rows per filing: current, comparative, other dates
   reports/conflicts.csv              every current-period holding with conflicting values
@@ -51,7 +51,7 @@ periods.to_csv(reports / "periods.csv", index=False)
 
 # 3 and 4. Coalesce, count and resolve conflicts
 h = coalesce.coalesce(canon)
-out = tables.save_table(h, ROOT / "outputs" / "interim" / "holdings")
+out = tables.save_table(h, ROOT / "outputs" / "canonical" / "holdings")
 cur = h[h["is_current"]]
 conf = cur[cur["n_conflicts"] > 0]
 conf[["adsh", "name", "identifier", "n_rows", "n_conflicts", "conflict_fields",
