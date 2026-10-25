@@ -4,7 +4,7 @@
 
 We do not use EdgarTools, so we compare our parsed holdings with the human-readable schedule of
 investments of three filings, one from each monthly ZIP. "Ours" is the current-period holdings
-written by `scripts/parse.py` (`outputs/interim/holdings.parquet`), before any Part 2 cleaning.
+written by `scripts/parse.py` (`outputs/canonical/holdings.parquet`), before any Part 2 cleaning.
 Our side is reproduced by `python scripts/agreement.py`, which writes
 `reports/agreement_ours.csv`. The filing's side was read from each 10-Q in the SEC's inline
 viewer (links below). Amounts in the documents are in thousands unless stated.

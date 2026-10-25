@@ -1,0 +1,38 @@
+# Case Study 2B pipeline (Part 5). Rebuild everything with:  dvc repro
+# Stages: acquire -> parse -> clean -> reconcile -> report
+# (clean, reconcile and report are added when Parts 2 and 3 are ready)
+
+stages:
+  acquire:
+    cmd: python scripts/acquire.py
+    deps:
+      - scripts/acquire.py
+      - src/lookthrough/acquire.py
+      - src/lookthrough/quarter.py
+    params:
+      - release
+      - release_months
+      - sec.base_url
+    outs:
+      - data/raw:
+          persist: true       # keep the ZIPs between runs: acquire.py skips months already downloaded
+      - data/manifest.json:
+          cache: false        # small, committed to Git as the Part 0 deliverable
+
+  parse:
+    cmd: python scripts/parse.py
+    deps:
+      - scripts/parse.py
+      - src/lookthrough/load.py
+      - src/lookthrough/mapping.py
+      - src/lookthrough/holdings.py
+      - src/lookthrough/coalesce.py
+      - data/raw
+    params:
+      - release
+    outs:
+      - outputs/canonical/holdings.parquet
+      - reports/periods.csv:
+          cache: false
+      - reports/conflicts.csv:
+          cache: false

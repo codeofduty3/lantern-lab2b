@@ -1,0 +1,84 @@
+schema: '2.0'
+stages:
+  acquire:
+    cmd: python scripts/acquire.py
+    deps:
+    - path: scripts/acquire.py
+      hash: md5
+      md5: 24f709e26c964e762b6964f40c33ffa9
+      size: 2421
+    - path: src/lookthrough/acquire.py
+      hash: md5
+      md5: 8d684220e1df1371b7ce94fe2854f87e
+      size: 3192
+      isexec: true
+    - path: src/lookthrough/quarter.py
+      hash: md5
+      md5: f33914b16aed604a8a52def20d122bc9
+      size: 3779
+    params:
+      params.yaml:
+        release: 2026q3
+        release_months:
+        - '2026_07'
+        - '2026_08'
+        - '2026_09'
+        sec.base_url: 
+          https://www.sec.gov/files/datastandardsinnovation/data/business-development-company-bdc-data-sets/
+    outs:
+    - path: data/manifest.json
+      hash: md5
+      md5: 419b15a8d84dba5ad2a98b89a9c8f713
+      size: 1010
+    - path: data/raw
+      hash: md5
+      md5: bdcc128ec184c31969616a5b50e2f88b.dir
+      size: 2939857467
+      nfiles: 39
+  parse:
+    cmd: python scripts/parse.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: bdcc128ec184c31969616a5b50e2f88b.dir
+      size: 2939857467
+      nfiles: 39
+    - path: scripts/parse.py
+      hash: md5
+      md5: ad76ef53f04ddf0dcc0344e7a2320914
+      size: 3678
+    - path: src/lookthrough/coalesce.py
+      hash: md5
+      md5: 2f0d043bdb8791616b4d8f14a9ea36d3
+      size: 2799
+    - path: src/lookthrough/holdings.py
+      hash: md5
+      md5: 439efe4a07b64006b0c14328b56d468b
+      size: 1316
+      isexec: true
+    - path: src/lookthrough/load.py
+      hash: md5
+      md5: 5da28e3cb0c7d189b743cdd5500f6da6
+      size: 2881
+      isexec: true
+    - path: src/lookthrough/mapping.py
+      hash: md5
+      md5: f0abbef253b706e29550237a7e364491
+      size: 3559
+      isexec: true
+    params:
+      params.yaml:
+        release: 2026q3
+    outs:
+    - path: outputs/canonical/holdings.parquet
+      hash: md5
+      md5: b2db0f07167681121078566a6093c565
+      size: 5308506
+    - path: reports/conflicts.csv
+      hash: md5
+      md5: ceafa814acafd3a766b09bb35b7bccdb
+      size: 120742
+    - path: reports/periods.csv
+      hash: md5
+      md5: ce4ebaf5d83f21187e5a5117d89ad61f
+      size: 15734

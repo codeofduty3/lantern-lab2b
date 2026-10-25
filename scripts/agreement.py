@@ -28,7 +28,7 @@ rdir = paths.release_dir(P, ROOT)
 sub = load.load_sub(rdir)
 num = load.load_num(rdir, tags=[reconcile.FV_TAG], adsh=list(FILINGS))
 filed = reconcile.filed_totals(num, sub).set_index("adsh")["filed_fv"]
-h = tables.load_table(ROOT / "outputs" / "interim" / "holdings")
+h = tables.load_table(ROOT / "outputs" / "canonical" / "holdings")
 h = h[h["is_current"] & h["adsh"].isin(list(FILINGS))]
 
 rows = []
