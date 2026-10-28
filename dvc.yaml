@@ -1,6 +1,6 @@
 # Case Study 2B pipeline (Part 5). Rebuild everything with:  dvc repro
 # Stages: acquire -> parse -> clean -> reconcile -> report
-# (clean, reconcile and report are added when Parts 2 and 3 are ready)
+# (clean is added when Part 2 is ready; reconcile also writes the Part 3 reports)
 
 stages:
   acquire:
@@ -35,4 +35,31 @@ stages:
       - reports/periods.csv:
           cache: false
       - reports/conflicts.csv:
+          cache: false
+
+  reconcile:
+    cmd: python scripts/reconcile.py
+    deps:
+      - scripts/reconcile.py
+      - src/lookthrough/clean.py
+      - src/lookthrough/reconcile.py
+      - src/lookthrough/report.py
+      - docs/triage_notes.csv
+      - outputs/canonical/holdings.parquet
+      - data/raw
+    params:
+      - release
+      - reconcile.tolerance
+    outs:
+      - outputs/panel/holdings.parquet
+      - reports/coverage.csv:
+          cache: false
+      - reports/coverage.md:
+          cache: false
+      - reports/triage.md:
+          cache: false
+      - reports/cleaning_log.csv:
+          cache: false
+    metrics:
+      - reports/coverage.json:
           cache: false
