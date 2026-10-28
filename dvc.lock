@@ -82,3 +82,67 @@ stages:
       hash: md5
       md5: ce4ebaf5d83f21187e5a5117d89ad61f
       size: 15734
+  reconcile:
+    cmd: python scripts/reconcile.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: bdcc128ec184c31969616a5b50e2f88b.dir
+      size: 2939857467
+      nfiles: 39
+    - path: docs/triage_notes.csv
+      hash: md5
+      md5: 16753098a1e1d9a4f1de4a53f0c43c9a
+      size: 65364
+    - path: outputs/canonical/holdings.parquet
+      hash: md5
+      md5: b2db0f07167681121078566a6093c565
+      size: 5308506
+    - path: scripts/reconcile.py
+      hash: md5
+      md5: 279cb396ee81d567101b4d4a9090ae5f
+      size: 3857
+    - path: src/lookthrough/clean.py
+      hash: md5
+      md5: 9f4c8b2b6d03bb408b78c1b04ed8a3ae
+      size: 1486
+      isexec: true
+    - path: src/lookthrough/reconcile.py
+      hash: md5
+      md5: 79e46614a8bf6a11ea1aa65188030a19
+      size: 3864
+      isexec: true
+    - path: src/lookthrough/report.py
+      hash: md5
+      md5: 3b626283084dd630904d1da14646150b
+      size: 4863
+      isexec: true
+    params:
+      params.yaml:
+        reconcile.tolerance: 0.01
+        release: 2026q3
+    outs:
+    - path: outputs/panel/holdings.parquet
+      hash: md5
+      md5: a7556155d7366f3cd3e09b416c914fcc
+      size: 1247605
+    - path: reports/cleaning_log.csv
+      hash: md5
+      md5: 6e288ded61ccc66c0e170dc87c6f8d88
+      size: 220
+    - path: reports/coverage.csv
+      hash: md5
+      md5: caf663a7308a8ad95b3664b184147d9c
+      size: 23848
+    - path: reports/coverage.json
+      hash: md5
+      md5: 94f5603394f935b9e3fc6813fac6e75a
+      size: 226
+    - path: reports/coverage.md
+      hash: md5
+      md5: c100ea0cb6a8429b3c2f6bf21e3fbf22
+      size: 16530
+    - path: reports/triage.md
+      hash: md5
+      md5: 449f57fc69d3de038dcf61280800bc54
+      size: 101068
