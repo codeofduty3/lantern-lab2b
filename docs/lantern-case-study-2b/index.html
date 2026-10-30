@@ -195,21 +195,22 @@ pytest -q
 <p>Generate the compact API bundle:</p>
 <pre><code language="language-bash" class="language-bash">python scripts/export_app_data.py
 </code></pre>
-<p>Run the local backend and static UI:</p>
+<p>Run the local backend and Streamlit UI:</p>
 <pre><code language="language-bash" class="language-bash">PYTHONPATH=. uvicorn app.api.main:app --port 8000
-python serve_web.py
+LANTERN_API_URL=http://127.0.0.1:8000/api streamlit run streamlit_app.py
 </code></pre>
 <p>Open:</p>
 <ul>
-<li>UI: <code>http://127.0.0.1:3000</code></li>
+<li>UI: <code>http://127.0.0.1:8501</code></li>
 <li>API documentation: <code>http://127.0.0.1:8000/docs</code></li>
-<li>Codelab: <code>http://127.0.0.1:3000/codelab/</code></li>
+<li>Codelab: <code>https://lantern-cs2b-codelab.vercel.app</code></li>
 </ul>
 <p>The public deployment uses the same separation:</p>
 <ul>
-<li>Replit serves <code>app/web/</code> and the generated static codelab.</li>
+<li>Streamlit Community Cloud serves <code>streamlit_app.py</code>.</li>
 <li>Vercel serves the read-only FastAPI backend and compact JSON data.</li>
-<li><code>app/web/config.js</code> or the Replit <code>LANTERN_API_BASE</code> environment variable points the static UI at the backend.</li>
+<li>Vercel serves the static claat codelab.</li>
+<li>The <code>LANTERN_API_URL</code> app secret points Streamlit at the backend.</li>
 </ul>
 <p>The economic report in <code>reports/economics.md</code> states measured wall-clock values, its compute-rate assumption, and the linear scale extrapolation. Re-run the measurement on your own hardware before quoting speed as a universal result.</p>
 <p><strong>What could go wrong:</strong> the UI and API are intentionally deployable separately. If the UI loads but shows a network error, check the API base URL and backend CORS configuration before changing the data.</p>

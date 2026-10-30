@@ -263,25 +263,25 @@ Generate the compact API bundle:
 python scripts/export_app_data.py
 ```
 
-Run the local backend and static UI:
+Run the local backend and Streamlit UI:
 
 ```bash
 PYTHONPATH=. uvicorn app.api.main:app --port 8000
-python serve_web.py
+LANTERN_API_URL=http://127.0.0.1:8000/api streamlit run streamlit_app.py
 ```
 
 Open:
 
-* UI: `http://127.0.0.1:3000`
+* UI: `http://127.0.0.1:8501`
 * API documentation: `http://127.0.0.1:8000/docs`
-* Codelab: `http://127.0.0.1:3000/codelab/`
+* Codelab: `https://lantern-cs2b-codelab.vercel.app`
 
 The public deployment uses the same separation:
 
-* Replit serves `app/web/` and the generated static codelab.
+* Streamlit Community Cloud serves `streamlit_app.py`.
 * Vercel serves the read-only FastAPI backend and compact JSON data.
-* `app/web/config.js` or the Replit `LANTERN_API_BASE` environment variable
-  points the static UI at the backend.
+* Vercel serves the static claat codelab.
+* The `LANTERN_API_URL` app secret points Streamlit at the backend.
 
 The economic report in `reports/economics.md` states measured wall-clock values,
 its compute-rate assumption, and the linear scale extrapolation. Re-run the

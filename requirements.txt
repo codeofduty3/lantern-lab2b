@@ -11,5 +11,6 @@ botocore[crt]
 fastapi>=0.115,<1
 uvicorn>=0.30,<1
 beautifulsoup4>=4.12
+streamlit>=1.41,<2
 # Optional, for notebook 07 (verify your dependency). Pin the exact version your instructor announces:
 # edgartools==<pinned version>

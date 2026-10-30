@@ -1,5 +1,13 @@
 # Project LANTERN code lab
 
+Public codelab: <https://lantern-cs2b-codelab.vercel.app>
+
+The public tutorial is generated with `claat` from
+[`docs/codelab.md`](../codelab.md). The generated files are committed in
+`docs/lantern-case-study-2b/`, so the tutorial can be opened without running a
+notebook or local server. This README and the executed notebook provide the
+deeper implementation walkthrough used to author the public codelab.
+
 This is the reproducible path from SEC business-development-company (BDC)
 schedule-of-investments rows to Project LANTERN's panel, reconciliation and
 read-only app. It uses the real release named in `params.yaml`, not the
