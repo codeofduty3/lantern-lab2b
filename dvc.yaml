@@ -31,7 +31,8 @@ stages:
     params:
       - release
     outs:
-      - outputs/canonical/holdings.parquet
+      - outputs/canonical/holdings.parquet:
+          cache: false
       - reports/periods.csv:
           cache: false
       - reports/conflicts.csv:
@@ -98,7 +99,8 @@ stages:
       - reports/cleaning_log.csv
       - docs/triage_notes.csv
     outs:
-      - outputs/panel/holdings.parquet
+      - outputs/panel/holdings.parquet:
+          cache: false
       - reports/coverage.csv:
           cache: false
       - reports/coverage.md:
