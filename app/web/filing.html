@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Filing detail · Project LANTERN</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="filing" data-nav="filings">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html"><span class="brand-mark"></span>Project LANTERN</a>
+        <div class="nav-links">
+          <a data-nav-item="coverage" href="index.html">Coverage</a>
+          <a data-nav-item="filings" href="filings.html">Filings</a>
+          <a data-nav-item="excluded" href="excluded.html">Excluded</a>
+          <a data-nav-item="method" href="method.html">Method</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="shell" id="filing-content">
+      <section class="page-head">
+        <span class="eyebrow" id="filing-eyebrow">Filing detail</span>
+        <h1 id="filing-name">Loading filing…</h1>
+        <div id="filing-status"></div>
+        <a id="edgar-link" class="button secondary" hidden target="_blank" rel="noreferrer">
+          Open the source filing on SEC EDGAR
+        </a>
+      </section>
+
+      <section class="detail-summary" aria-label="Reconciliation summary">
+        <div class="summary-cell"><span>Holdings sum</span><strong id="holding-sum">Loading…</strong></div>
+        <div class="summary-cell"><span>Filed total</span><strong id="filed-total">Loading…</strong></div>
+        <div class="summary-cell"><span>Gap</span><strong id="filing-gap">Loading…</strong></div>
+        <div class="summary-cell"><span>Holdings</span><strong id="holding-count">Loading…</strong></div>
+      </section>
+      <div class="coverage-banner" id="holding-coverage">
+        Release-wide coverage is not 100%; loading this filing does not change that.
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Holdings reconciliation</span>
+            <h2>Holdings and source rows</h2>
+            <p>
+              Search the mapped schedule. “SOI rows” are the zero-based source
+              rows in the SEC release that produced each holding.
+            </p>
+          </div>
+        </div>
+        <div class="toolbar">
+          <label for="holding-search" class="muted small">Search holdings</label>
+          <input id="holding-search" type="search" placeholder="Borrower, security, industry or SOI row" />
+          <span id="holding-match" class="muted small"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Holding</th>
+                <th>Type</th>
+                <th class="num">Fair value</th>
+                <th class="num">Cost</th>
+                <th class="num">Principal</th>
+                <th class="num">SOI row count</th>
+                <th>Source SOI rows</th>
+              </tr>
+            </thead>
+            <tbody id="holdings-body">
+              <tr><td colspan="7" class="loading">Loading holdings…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span><a href="filings.html">← All filings</a></span>
+      <span><a href="/docs">API documentation</a></span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Filings · Project LANTERN</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="filings" data-nav="filings">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html"><span class="brand-mark"></span>Project LANTERN</a>
+        <div class="nav-links">
+          <a data-nav-item="coverage" href="index.html">Coverage</a>
+          <a data-nav-item="filings" href="filings.html">Filings</a>
+          <a data-nav-item="excluded" href="excluded.html">Excluded</a>
+          <a data-nav-item="method" href="method.html">Method</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="page-head">
+        <span class="eyebrow">Every attempt stays visible</span>
+        <h1>Filings</h1>
+        <p class="lede">
+          Compare each fund's mapped holdings with the total it reported to the
+          SEC. Admitted filings open to their holdings; excluded filings point
+          to the evidence behind the exclusion.
+        </p>
+      </section>
+      <div class="coverage-banner" data-coverage-banner aria-live="polite">
+        <span class="loading">Loading exported coverage…</span>
+      </div>
+
+      <section class="section">
+        <div class="toolbar">
+          <label for="filing-filter" class="muted small">Search BDC, accession or category</label>
+          <input id="filing-filter" type="search" placeholder="e.g. Blackstone or totals counted" />
+          <label for="status-filter" class="muted small">Status</label>
+          <select id="status-filter">
+            <option value="all">All attempts</option>
+            <option value="admitted">Admitted</option>
+            <option value="excluded">Excluded</option>
+          </select>
+          <span id="filing-count" class="muted small"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>BDC / accession</th>
+                <th>Form</th>
+                <th class="num">Holdings FV</th>
+                <th class="num">Filed FV</th>
+                <th class="num">Gap</th>
+                <th>Status</th>
+                <th>Triage</th>
+              </tr>
+            </thead>
+            <tbody id="filings-body">
+              <tr><td colspan="7" class="loading">Loading every attempted filing…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Project LANTERN · 2026 Q3</span>
+      <span><a href="/docs">Open API documentation</a></span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

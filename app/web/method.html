@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Method · Project LANTERN</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="method" data-nav="method">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html"><span class="brand-mark"></span>Project LANTERN</a>
+        <div class="nav-links">
+          <a data-nav-item="coverage" href="index.html">Coverage</a>
+          <a data-nav-item="filings" href="filings.html">Filings</a>
+          <a data-nav-item="excluded" href="excluded.html">Excluded</a>
+          <a data-nav-item="method" href="method.html">Method</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="page-head">
+        <span class="eyebrow">Rebuild and verification</span>
+        <h1>Method</h1>
+        <p class="lede">
+          The transformations and rules run in a documented order. Each entry
+          below comes from the pipeline's own cleaning log, including its source
+          example, row count and measured coverage before and after.
+        </p>
+      </section>
+      <div class="coverage-banner" data-coverage-banner aria-live="polite">
+        <span class="loading">Loading exported coverage…</span>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Ordered transformations</span>
+            <h2>From SOI rows to the panel</h2>
+            <p>
+              The first four steps filter periods or recover filed attributes.
+              The final three structural rules remove non-holding lines.
+            </p>
+          </div>
+        </div>
+        <div class="rules" id="rule-list">
+          <div class="loading">Loading cleaning log…</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Fresh-clone rebuild</span>
+            <h2>Reproduce every number</h2>
+            <p>Run from the repository root after installing the environment.</p>
+          </div>
+        </div>
+        <pre><code>dvc pull
+dvc repro
+PYTHONPATH=src python -m lookthrough.check
+pytest -q
+python scripts/export_app_data.py</code></pre>
+        <ol class="method-steps">
+          <li><code>dvc pull</code> restores the DVC-tracked release and pipeline inputs.</li>
+          <li><code>dvc repro</code> rebuilds the panel and reports in their declared dependency order.</li>
+          <li>The self-check validates columns, reconciliation, admission, categories and provenance.</li>
+          <li>The test suite covers the analytical pipeline and the read-only app.</li>
+          <li>The exporter copies the verified values into compact app JSON without adding a DVC stage.</li>
+        </ol>
+        <div class="callout">
+          <strong>Analytical boundary</strong>
+          <p>
+            The panel supports a borrower-to-BDC relationship view. It does not
+            claim cross-BDC matching, cross-period identity, or credit signals.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Project LANTERN · release 2026 Q3</span>
+      <span><a href="/docs">API documentation</a></span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

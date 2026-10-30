@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "buildCommand": "python scripts/export_app_data.py",
+  "builds": [
+    {
+      "src": "app/api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "app/api/**",
+          "app/data/**"
+        ],
+        "excludeFiles": [
+          ".dvc/**",
+          ".git/**",
+          ".venv/**",
+          ".pytest_cache/**",
+          "data/**",
+          "docs/**",
+          "notebooks/**",
+          "outputs/**",
+          "reports/**",
+          "scripts/**",
+          "src/**",
+          "tests/**"
+        ]
+      }
+    },
+    {
+      "src": "app/web/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/docs",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/openapi.json",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/app/web/$1"
+    }
+  ]
+}
