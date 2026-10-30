@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excluded filings · Project LANTERN</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="excluded" data-nav="excluded">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html"><span class="brand-mark"></span>Project LANTERN</a>
+        <div class="nav-links">
+          <a data-nav-item="coverage" href="index.html">Coverage</a>
+          <a data-nav-item="filings" href="filings.html">Filings</a>
+          <a data-nav-item="excluded" href="excluded.html">Excluded</a>
+          <a data-nav-item="method" href="method.html">Method</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="page-head">
+        <span class="eyebrow">Gaps stay visible</span>
+        <h1>Excluded filings</h1>
+        <p class="lede">
+          A filing is excluded when the cleaned holdings do not reconcile within
+          one percentage point. Its category, gap, evidence and a source-row
+          example are retained rather than forced into the panel.
+        </p>
+      </section>
+      <div class="coverage-banner" data-coverage-banner aria-live="polite">
+        <span class="loading">Loading exported coverage…</span>
+      </div>
+
+      <section class="section">
+        <div class="toolbar">
+          <label for="triage-filter" class="muted small">Triage category</label>
+          <select id="triage-filter">
+            <option value="all">All categories</option>
+            <option value="comparative_leakage">Comparative leakage</option>
+            <option value="totals_counted">Totals counted</option>
+            <option value="cash_lines">Cash lines</option>
+            <option value="restated_copies">Restated copies</option>
+            <option value="unfunded_commitments">Unfunded commitments</option>
+            <option value="custom_tags">Custom tags</option>
+            <option value="no_identified_holdings">No identified holdings</option>
+            <option value="affiliate_split">Affiliate split</option>
+            <option value="no_filed_total">No filed total</option>
+            <option value="other">Other</option>
+          </select>
+          <span id="triage-count" class="muted small"></span>
+        </div>
+        <div class="triage-list" id="triage-list">
+          <div class="loading">Loading excluded filing evidence…</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Project LANTERN · evidence retained from the pipeline</span>
+      <span><a href="/docs">API documentation</a></span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

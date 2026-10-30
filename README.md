@@ -51,3 +51,42 @@ visible in the triage report.
 
 ## Data
 Public data only: the SEC BDC data sets (https://www.sec.gov/data-research/sec-markets-data/bdc-data-sets) and the SEC BDC readme (https://www.sec.gov/files/bdc_readme.pdf). Fixture data is synthetic.
+
+## Read-only app and code lab
+
+The 2026 Q3 application is an additive read-only view of the completed panel.
+It does not change the DVC pipeline or any existing report.
+
+Install the two web runtime packages in the existing environment, then generate
+the compact app data and start the API and static site in separate terminals:
+
+```bash
+pip install -r app/api/requirements.txt
+pip install "uvicorn>=0.30,<1"
+python scripts/export_app_data.py
+PYTHONPATH=. .venv/bin/uvicorn app.api.main:app --reload --port 8000
+.venv/bin/python -m http.server 8001 --directory app/web
+```
+
+Open `http://127.0.0.1:8001` for the five-page site and
+`http://127.0.0.1:8000/docs` for Swagger. The generated `app/data/` directory is
+ignored by Git because the 88 per-filing JSON exports are about 20 MiB.
+
+The end-to-end code lab is in
+[`docs/codelab/README.md`](docs/codelab/README.md), with its executed notebook at
+[`notebooks/codelab.ipynb`](notebooks/codelab.ipynb). It is not a dependency of
+`dvc.yaml`.
+
+### Deployment
+
+Vercel is used because it can route the static five-page site and the FastAPI
+function without Replit-specific setup. The production app is
+<https://lantern-lab2b.vercel.app>, Swagger is
+<https://lantern-lab2b.vercel.app/docs>, and the tested preview is
+<https://lantern-lab2b-3837dshnw-clutched.vercel.app> (the preview may require
+the Vercel account's authentication).
+
+The `buildCommand` regenerates the compact app data before deployment.
+`vercel.json` excludes the local DVC data, virtual environment and reports from
+the API bundle, and routes `/api` plus `/docs` to FastAPI while every other path
+serves `app/web`.
