@@ -9,8 +9,7 @@ and API.
 
 **Team:** Dany, Julio Sepulveda, and Kahan (`kahan15`)
 
-- Public UI: Streamlit Community Cloud deployment pending
-- API: <https://lantern-lab2b.vercel.app>
+- Public UI: <https://lantern-lab2b.streamlit.app>
 - API documentation: <https://lantern-lab2b.vercel.app/docs>
 - Codelab: <https://lantern-cs2b-codelab.vercel.app>
 - DVC remote: [DVC remote access](#dvc-remote-access)
