@@ -98,9 +98,10 @@ project:
 2. Create a new app from `codeofduty3/lantern-lab2b`.
 3. Select branch `integration/cs2b-final`.
 4. Set main file path to `streamlit_app.py`.
-5. Add the secret
+5. In Advanced settings, select Python 3.12.
+6. Add the secret
    `LANTERN_API_URL = "https://lantern-lab2b.vercel.app/api"`.
-6. Deploy and make the app public.
+7. Deploy and make the app public.
 
 Streamlit Community Cloud runs the UI for free. The UI reads only the public,
 read-only API and does not require DVC credentials, raw files, or analytical
@@ -108,8 +109,9 @@ dependencies.
 
 ## Setup (once)
 
-Prerequisites are Python 3.11 or newer, Git, and access to the project's DVC
-remote. Homebrew users can install:
+Prerequisites are Python 3.12, Git, and access to the project's DVC remote.
+Python 3.12 is the standard version for the pipeline, FastAPI backend, and
+Streamlit UI. Homebrew users can install:
 
 ```bash
 brew install python git dvc
