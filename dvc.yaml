@@ -1,6 +1,5 @@
-# Case Study 2B pipeline (Part 5). Rebuild everything with:  dvc repro
+# Case Study 2B pipeline. Rebuild with: dvc repro
 # Stages: acquire -> parse -> clean -> reconcile -> report
-# (clean is added when Part 2 is ready; reconcile also writes the Part 3 reports)
 
 stages:
   acquire:
@@ -15,9 +14,9 @@ stages:
       - sec.base_url
     outs:
       - data/raw:
-          persist: true       # keep the ZIPs between runs: acquire.py skips months already downloaded
+          persist: true
       - data/manifest.json:
-          cache: false        # small, committed to Git as the Part 0 deliverable
+          cache: false
 
   parse:
     cmd: python scripts/parse.py
@@ -38,19 +37,66 @@ stages:
       - reports/conflicts.csv:
           cache: false
 
-  reconcile:
-    cmd: python scripts/reconcile.py
+  clean:
+    cmd: python scripts/clean.py
     deps:
-      - scripts/reconcile.py
+      - scripts/clean.py
       - src/lookthrough/clean.py
+      - src/lookthrough/load.py
+      - src/lookthrough/mapping.py
       - src/lookthrough/reconcile.py
-      - src/lookthrough/report.py
-      - docs/triage_notes.csv
+      - src/lookthrough/tables.py
       - outputs/canonical/holdings.parquet
       - data/raw
     params:
       - release
       - reconcile.tolerance
+    outs:
+      - outputs/cleaned/holdings.parquet:
+          cache: false
+      - reports/cleaning_log.csv:
+          cache: false
+
+  reconcile:
+    cmd: python scripts/reconcile.py
+    deps:
+      - scripts/reconcile.py
+      - src/lookthrough/clean.py
+      - src/lookthrough/holdings.py
+      - src/lookthrough/load.py
+      - src/lookthrough/mapping.py
+      - src/lookthrough/reconcile.py
+      - src/lookthrough/tables.py
+      - outputs/canonical/holdings.parquet
+      - outputs/cleaned/holdings.parquet
+      - data/raw
+    params:
+      - release
+      - reconcile.tolerance
+    outs:
+      - outputs/reconciled/holdings.parquet:
+          cache: false
+      - outputs/reconciled/rec.parquet:
+          cache: false
+      - outputs/reconciled/diag.parquet:
+          cache: false
+      - outputs/reconciled/no_soi.parquet:
+          cache: false
+
+  report:
+    cmd: python scripts/report.py
+    deps:
+      - scripts/report.py
+      - src/lookthrough/paths.py
+      - src/lookthrough/reconcile.py
+      - src/lookthrough/report.py
+      - src/lookthrough/tables.py
+      - outputs/cleaned/holdings.parquet
+      - outputs/reconciled/rec.parquet
+      - outputs/reconciled/diag.parquet
+      - outputs/reconciled/no_soi.parquet
+      - reports/cleaning_log.csv
+      - docs/triage_notes.csv
     outs:
       - outputs/panel/holdings.parquet
       - reports/coverage.csv:
@@ -58,8 +104,6 @@ stages:
       - reports/coverage.md:
           cache: false
       - reports/triage.md:
-          cache: false
-      - reports/cleaning_log.csv:
           cache: false
     metrics:
       - reports/coverage.json:
