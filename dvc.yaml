@@ -23,6 +23,7 @@ stages:
     cmd: python scripts/parse.py
     deps:
       - scripts/parse.py
+      - src/lookthrough/clean.py
       - src/lookthrough/load.py
       - src/lookthrough/mapping.py
       - src/lookthrough/holdings.py

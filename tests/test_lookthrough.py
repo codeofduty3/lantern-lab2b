@@ -132,7 +132,9 @@ TRIAGED = {"DELTA": "unfunded_commitments", "ECHO": "custom_tags", "FOXTROT": "n
 
 def _outputs_in_temp_repo(t, triage=True):
     root = Path(t)
-    shutil.copy(ROOT / "params.yaml", root / "params.yaml")
+    params = (ROOT / "params.yaml").read_text()
+    (root / "params.yaml").write_text(
+        params.replace("use_fixture: false", "use_fixture: true"))
     shutil.copytree(ROOT / "data" / "fixture", root / "data" / "fixture")
     B = pipeline.run_baseline(root / "data" / "fixture" / f"{paths.FIXTURE_RELEASE}_bdc", 0.01)
     report.write_outputs(B["kept"], B["rec"], B["diag"], B["log"], root, P)

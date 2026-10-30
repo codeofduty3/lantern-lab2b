@@ -1,3 +1,8 @@
-rule,artifact,rows_affected,example
-rule_totals,identifier names a total or subtotal,37,0001143513-26-000012 / soi_row 173043
-rule_cash,cash or money-market line in schedule,40,0001104659-26-094146 / soi_row 81264;81265
+rule,artifact,motivation,example_adsh,example_soi_row,rows_affected,coverage_before,coverage_after
+transform_current_period,comparative and other-date rows excluded from the current panel,The row date differs from the filing period in SUB.,0000017313-26-000095,42732,64835,0.285,0.285
+transform_axis_identifiers,identifier recovered from a fallback axis for an ID-less filing,Every current row in that filing lacks the standard identifier axis; the Legal Entity member itself names the investee.,0001493152-26-036285,10586,39,0.285,0.285
+transform_custom_fair_values,fair value recovered from a custom NUM tag keyed by identifier,The SOI money-market row has an identifier but no standard fair-value fact; NUM supplies the omitted value on that same identifier member.,0001143513-26-000012,75371,28,0.285,0.271
+transform_cleaning_attributes,"equity/warrant security class, affiliate category, and unfunded flag",Security and affiliate terms are filed in the identifier or standard security axes; commitment columns carry unfunded amounts.,0000017313-26-000095,42733,68175,0.271,0.271
+rule_totals,identifier is a total/subtotal or category-only label,The filed identifier is a total/subtotal or a category-only label rather than an individual investment.,0000930413-26-002499,106977,59,0.271,0.288
+rule_issuer_aggregates,short issuer summary duplicates a detailed row,"Within one filing, a short identifier with neither cost nor principal contains the same issuer key as a separately filed instrument-detail row.",0000017313-26-000095,40610,311,0.288,0.4
+rule_cash,cash or money-market line in schedule,"The identifier explicitly names cash or a money-market fund, so it is a liquidity line rather than an investment holding.",0001104659-26-094146,81264,40,0.4,0.421

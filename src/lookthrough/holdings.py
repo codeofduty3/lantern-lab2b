@@ -1,12 +1,13 @@
 """From canonical SOI rows to one row per holding."""
 import pandas as pd
 
-from .mapping import CANONICAL
+from .mapping import CANONICAL, CLEANING
 
 KEY = ["adsh", "ddate", "identifier"]
 TEXT = ["investment_type", "industry", "affiliation"]
 META = ["cik", "name", "form", "period", "cstm", "inlineurl",
-        "is_current"]
+        "is_current", "identifier_source"]
+VALUE_FIELDS = list(CANONICAL) + list(CLEANING) + TEXT
 
 
 def split_periods(df, sub=None) -> pd.DataFrame:
@@ -24,7 +25,7 @@ def coalesce_holdings(df: pd.DataFrame) -> pd.DataFrame:
     """One row per (filing, date, identifier), first non-null value
     per field; n_conflicts counts fields whose values disagree."""
     rows = df[df["identifier"].notna()].copy()
-    fields = [f for f in list(CANONICAL) + TEXT if f in rows]
+    fields = [f for f in VALUE_FIELDS if f in rows]
     meta = [c for c in META if c in rows]
     g = rows.groupby(KEY, sort=False, dropna=False)
     out = g[meta + fields].first()

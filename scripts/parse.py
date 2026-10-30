@@ -20,7 +20,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from lookthrough import coalesce, holdings, load, mapping, paths, tables  # noqa: E402
+from lookthrough import clean, coalesce, holdings, load, mapping, paths, tables  # noqa: E402
 
 P = paths.load_params(ROOT)
 rdir = paths.release_dir(P, ROOT)
@@ -35,6 +35,7 @@ extra = [c for c in [coalesce.SUBSIDIARY_AXIS] if c in header]
 soi = load.load_soi(rdir, mapping.soi_usecols(header, colmap) + extra)
 soi = soi[soi["adsh"].isin(sub["adsh"])]
 canon = holdings.split_periods(mapping.to_canonical(soi, colmap), sub)
+canon = clean.recover_axis_identifiers(canon)
 canon["subsidiary"] = soi[coalesce.SUBSIDIARY_AXIS] if extra else pd.NA
 
 # 2. Current, comparative (the filing's most common other date), other
