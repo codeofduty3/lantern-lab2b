@@ -28,23 +28,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001812554-26-000047 / soi_row 53231 (Blue Owl Cross-Strategy Opportunities LLC (BOCSO): $1,240.0M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
-## ARES CAPITAL CORP (0001628280-26-050307)
-
-- Gap: +17.27%
-- Holdings identified: 1481; current SOI rows without an identifier: 451
-- Holdings with missing fair value: 3
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 90
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +17.27% ($5,067.3M): holdings $34,416.6M vs filed $29,349.3M. Issuer-level rows with neither cost nor principal (e.g. 'Ivy Hill Asset Management, L.P.' = member interest + subordinated revolving loan) beside the instrument rows. 27% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 31 rows sum to $5,067.3M; without them the gap would be +0.00% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001628280-26-050307 / soi_row 4310 (Ivy Hill Asset Management, L.P.: $2,842.8M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
 ## HPS CORPORATE LENDING FUND (0001628280-26-056772)
 
-- Gap: +6.50%
-- Holdings identified: 1034; current SOI rows without an identifier: 396
+- Gap: +6.51%
+- Holdings identified: 1030; current SOI rows without an identifier: 396
 - Holdings with missing fair value: 216
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 249
@@ -54,23 +41,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001628280-26-056772 / soi_row 77231 (Emerus Holdings, Inc. 1: $243.0M)
 - **Fix or reason:** No fix: the root cause is not identified from the data sets alone; it needs a read of the filing's schedule.
 
-## ARES STRATEGIC INCOME FUND (0001628280-26-054923)
-
-- Gap: +4.17%
-- Holdings identified: 1285; current SOI rows without an identifier: 399
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 24
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +4.17% ($911.7M): holdings $22,750.4M vs filed $21,838.7M. Issuer-level rows with neither cost nor principal (e.g. 'ADLP LLC' = 'ADLP LLC | Subordinated certificates'). 83% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 5 rows sum to $911.7M; without them the gap would be +0.00% (within tolerance).
-- **Root-cause category:** restated_copies
-- **Example:** 0001628280-26-054923 / soi_row 44174 (ADLP LLC: $755.2M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
 ## BLUE OWL CAPITAL CORP (0001655888-26-000056)
 
-- Gap: +26.04%
-- Holdings identified: 607; current SOI rows without an identifier: 218
+- Gap: +16.11%
+- Holdings identified: 598; current SOI rows without an identifier: 218
 - Holdings with missing fair value: 6
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 48
@@ -80,23 +54,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001655888-26-000056 / soi_row 53229 (Blue Owl Cross-Strategy Opportunities LLC (BOCSO): $1,240.0M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the rows that lack the filer's issuer-affiliation suffix (' | ...'), which repeat or total schedule holdings.
 
-## FS KKR CAPITAL CORP (0001628280-26-053783)
-
-- Gap: +49.61%
-- Holdings identified: 746; current SOI rows without an identifier: 102
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 17
-- Negative fair value tagged by investment type in NUM: -1,111,000,000
-- **Evidence:** Gap +49.61% ($5,664.5M): holdings $17,082.6M vs filed $11,418.1M. Issuer rows with neither cost nor principal repeat the schedule (e.g. 'Credit Opportunities Partners JV, LLC'). The remainder equals the $1,111.0M negative unfunded-commitment fact (InvestmentTypeAxis) the filer nets out of its total. 100% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 94 rows sum to $4,553.5M; without them the gap would be +9.73%, which equals the $1,111.0M unfunded-commitment fact.
-- **Root-cause category:** restated_copies
-- **Example:** 0001628280-26-053783 / soi_row 62867 (Credit Opportunities Partners JV, LLC: $1,648.7M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
 ## BLUE OWL TECHNOLOGY FINANCE CORP. (0001747777-26-000028)
 
-- Gap: +9.67%
-- Holdings identified: 500; current SOI rows without an identifier: 210
+- Gap: +6.94%
+- Holdings identified: 501; current SOI rows without an identifier: 210
 - Holdings with missing fair value: 8
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 44
@@ -106,10 +67,23 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001747777-26-000028 / soi_row 126818 (LSI Financing LLC: $238.6M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
+## FS KKR CAPITAL CORP (0001628280-26-053783)
+
+- Gap: +20.37%
+- Holdings identified: 670; current SOI rows without an identifier: 102
+- Holdings with missing fair value: 0
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 17
+- Negative fair value tagged by investment type in NUM: -1,111,000,000
+- **Evidence:** Gap +49.61% ($5,664.5M): holdings $17,082.6M vs filed $11,418.1M. Issuer rows with neither cost nor principal repeat the schedule (e.g. 'Credit Opportunities Partners JV, LLC'). The remainder equals the $1,111.0M negative unfunded-commitment fact (InvestmentTypeAxis) the filer nets out of its total. 100% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 94 rows sum to $4,553.5M; without them the gap would be +9.73%, which equals the $1,111.0M unfunded-commitment fact.
+- **Root-cause category:** restated_copies
+- **Example:** 0001628280-26-053783 / soi_row 62867 (Credit Opportunities Partners JV, LLC: $1,648.7M)
+- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+
 ## ARES CORE INFRASTRUCTURE FUND (0002031750-26-000064)
 
-- Gap: +104.72%
-- Holdings identified: 83; current SOI rows without an identifier: 125
+- Gap: +12.63%
+- Holdings identified: 79; current SOI rows without an identifier: 125
 - Holdings with missing fair value: 11
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 2
@@ -119,31 +93,18 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0002031750-26-000064 / soi_row 73831 (Denali Equity Holdings LLC: $6,118.9M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
 
-## PROSPECT CAPITAL CORP (0001287032-26-000269)
+## OAKTREE STRATEGIC CREDIT FUND (0001872371-26-000013)
 
-- Gap: +60.82%
-- Holdings identified: 300; current SOI rows without an identifier: 454
-- Holdings with missing fair value: 52
+- Gap: +3.31%
+- Holdings identified: 368; current SOI rows without an identifier: 152
+- Holdings with missing fair value: 3
 - No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 89
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 36
 - Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +60.82% ($3,857.4M): holdings $10,199.9M vs filed $6,342.6M. Issuer-level rows with neither cost nor principal (e.g. 'National Property REIT Corp.', 'First Tower Finance Company LLC') beside the instrument rows. 9% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 29 rows sum to $3,857.4M; without them the gap would be +0.00% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001287032-26-000269 / soi_row 131747 (National Property REIT Corp.: $1,081.6M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
-## GOLUB CAPITAL BDC, INC. (0001476765-26-000048)
-
-- Gap: +2.26%
-- Holdings identified: 1812; current SOI rows without an identifier: 206
-- Holdings with missing fair value: 2
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 15
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +2.26% ($185.2M): holdings $8,381.5M vs filed $8,196.4M. Rows with neither cost nor principal (e.g. 'Chestnut Optical Midco, Inc.'); they over-explain the gap. 0% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 14 rows sum to $297.3M; without them the gap would be -1.37%; the remainder is not identified from the data sets.
-- **Root-cause category:** totals_counted
-- **Example:** 0001476765-26-000048 / soi_row 57877 (Chestnut Optical Midco, Inc.: $107.2M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+- **Evidence:** The identifier duplicates the $13.148M OSCF EDL JV fair value in SOI row 146930 and omits cost and principal. The remaining gap after current structural cleaning is not attributed to this rule.
+- **Root-cause category:** restated_copies
+- **Example:** 0001872371-26-000013 / soi_row 146929 (OSCF EDL JV LLC membership interest)
+- **Fix or reason:** No additional rule: the remaining difference is not established from row structure.
 
 ## MAIN STREET CAPITAL CORP (0001396440-26-000094)
 
@@ -158,18 +119,18 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001396440-26-000094 / soi_row 53647 (Bolder Panther Group, LLC | Secured Debt 1: $101.0M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
-## STEPSTONE PRIVATE CREDIT FUND LLC (0001193125-26-351731)
+## PROSPECT CAPITAL CORP (0001287032-26-000269)
 
-- Gap: +73.03%
-- Holdings identified: 1428; current SOI rows without an identifier: 101
-- Holdings with missing fair value: 1
+- Gap: +2.93%
+- Holdings identified: 277; current SOI rows without an identifier: 454
+- Holdings with missing fair value: 52
 - No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 20
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 89
 - Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +73.03% ($2,771.7M): holdings $6,567.1M vs filed $3,795.4M. A 'Net Assets' row on the identifier axis is counted as a holding. This row is $2,771.7M; without it the gap would be +0.00% (within tolerance).
+- **Evidence:** Gap +60.82% ($3,857.4M): holdings $10,199.9M vs filed $6,342.6M. Issuer-level rows with neither cost nor principal (e.g. 'National Property REIT Corp.', 'First Tower Finance Company LLC') beside the instrument rows. 9% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 29 rows sum to $3,857.4M; without them the gap would be +0.00% (within tolerance).
 - **Root-cause category:** totals_counted
-- **Example:** 0001193125-26-351731 / soi_row 136461 (Net Assets: $2,771.7M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
+- **Example:** 0001287032-26-000269 / soi_row 131747 (National Property REIT Corp.: $1,081.6M)
+- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
 ## NORTH HAVEN PRIVATE INCOME FUND LLC (0001193125-26-342549)
 
@@ -186,8 +147,8 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 
 ## BLUE OWL TECHNOLOGY INCOME CORP. (0001869453-26-000053)
 
-- Gap: +28.05%
-- Holdings identified: 415; current SOI rows without an identifier: 119
+- Gap: +25.69%
+- Holdings identified: 414; current SOI rows without an identifier: 119
 - Holdings with missing fair value: 5
 - No filed total in NUM: False
 - Custom tag used in the SOI: False; custom fair-value facts in NUM: 28
@@ -197,23 +158,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001869453-26-000053 / soi_row 53233 (Blue Owl Cross-Strategy Opportunities LLC (BOCSO): $1,240.0M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the rows that lack the filer's issuer-affiliation suffix (' | ...'), which repeat or total schedule holdings.
 
-## LORD ABBETT PRIVATE CREDIT FUND (0000930413-26-002499)
-
-- Gap: +309.45%
-- Holdings identified: 215; current SOI rows without an identifier: 235
-- Holdings with missing fair value: 3
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +309.45% ($4,838.8M): holdings $6,402.4M vs filed $1,563.7M. Every identifier is an XBRL member; category and industry members ('Investments at Fair Value [Member]' equals the filed total itself, 'First Lien Secured Debt [Member]', industry members) are totals counted as holdings. These 35 rows sum to $4,642.6M; without them the gap would be +12.55%; the remainder is not identified from the data sets.
-- **Root-cause category:** totals_counted
-- **Example:** 0000930413-26-002499 / soi_row 106977 (Investments at Fair Value [Member]: $1,563.7M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
-
 ## MONROE CAPITAL INCOME PLUS CORP (0001742313-26-000046)
 
-- Gap: +7.47%
-- Holdings identified: 1019; current SOI rows without an identifier: 336
+- Gap: +1.26%
+- Holdings identified: 944; current SOI rows without an identifier: 336
 - Holdings with missing fair value: 1
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 240
@@ -221,19 +169,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Evidence:** Gap +7.47% ($444.8M): holdings $6,401.2M vs filed $5,956.4M. Rows with neither cost nor principal (affiliated/controlled-investments table rows). 100% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 65 rows sum to $444.8M; without them the gap would be +0.00% (within tolerance).
 - **Root-cause category:** restated_copies
 - **Example:** 0001742313-26-000046 / soi_row 137077 (NFS Intermediate HoldCo, LLC (Series B preferred units): $63.8M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
-## BARINGS PRIVATE CREDIT CORP (0001859919-26-000068)
-
-- Gap: +3.47%
-- Holdings identified: 879; current SOI rows without an identifier: 254
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 21
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +3.47% ($187.7M): holdings $5,599.8M vs filed $5,412.1M. Rows with neither cost nor principal (affiliated/controlled-investments table rows). 6% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 6 rows sum to $198.7M; without them the gap would be -0.20% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001859919-26-000068 / soi_row 162513 (Rocade Holdings LLC: $115.0M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
 ## FRANKLIN BSP CAPITAL CORP (0001825248-26-000024)
@@ -249,10 +184,23 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001825248-26-000024 / soi_row 80583 (FBLC Senior Loan Fund, LLC, Joint Venture: $218.2M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the rows that lack the filer's issuer-affiliation suffix (' | ...'), which repeat or total schedule holdings.
 
+## BARINGS PRIVATE CREDIT CORP (0001859919-26-000068)
+
+- Gap: +1.34%
+- Holdings identified: 878; current SOI rows without an identifier: 254
+- Holdings with missing fair value: 0
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 21
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +3.47% ($187.7M): holdings $5,599.8M vs filed $5,412.1M. Rows with neither cost nor principal (affiliated/controlled-investments table rows). 6% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 6 rows sum to $198.7M; without them the gap would be -0.20% (within tolerance).
+- **Root-cause category:** totals_counted
+- **Example:** 0001859919-26-000068 / soi_row 162513 (Rocade Holdings LLC: $115.0M)
+- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+
 ## TPG TWIN BROOK CAPITAL INCOME FUND (0001913724-26-000024)
 
-- Gap: +4.85%
-- Holdings identified: 846; current SOI rows without an identifier: 147
+- Gap: +2.04%
+- Holdings identified: 843; current SOI rows without an identifier: 147
 - Holdings with missing fair value: 2
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 13
@@ -262,17 +210,17 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001913724-26-000024 / soi_row 174563 (Twin Brook Equity Holdings, LLC: $103.1M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
-## HERCULES CAPITAL, INC. (0001280784-26-000042)
+## LORD ABBETT PRIVATE CREDIT FUND (0000930413-26-002499)
 
-- Gap: +10.24%
-- Holdings identified: 391; current SOI rows without an identifier: 137
-- Holdings with missing fair value: 0
+- Gap: +209.24%
+- Holdings identified: 213; current SOI rows without an identifier: 235
+- Holdings with missing fair value: 3
 - No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 6
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
 - Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +10.24% ($469.2M): holdings $5,053.1M vs filed $4,583.9M. Issuer subtotal rows named '<section>, Total <company>' (e.g. 'Debt Investments, Application Software, Total Tipalti Solutions Ltd.'); the baseline regex only catches 'Total' at the start. These 27 rows sum to $444.4M; without them the gap would be +0.54% (within tolerance).
+- **Evidence:** Gap +309.45% ($4,838.8M): holdings $6,402.4M vs filed $1,563.7M. Every identifier is an XBRL member; category and industry members ('Investments at Fair Value [Member]' equals the filed total itself, 'First Lien Secured Debt [Member]', industry members) are totals counted as holdings. These 35 rows sum to $4,642.6M; without them the gap would be +12.55%; the remainder is not identified from the data sets.
 - **Root-cause category:** totals_counted
-- **Example:** 0001280784-26-000042 / soi_row 2767 (Debt Investments, Application Software, Total Tipalti Solutions Ltd.: $114.7M)
+- **Example:** 0000930413-26-002499 / soi_row 106977 (Investments at Fair Value [Member]: $1,563.7M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
 
 ## BAIN CAPITAL SPECIALTY FINANCE, INC. (0001193125-26-342491)
@@ -290,8 +238,8 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 
 ## NEW MOUNTAIN FINANCE CORP (0001496099-26-000029)
 
-- Gap: +98.17%
-- Holdings identified: 504; current SOI rows without an identifier: 181
+- Gap: +77.36%
+- Holdings identified: 497; current SOI rows without an identifier: 181
 - Holdings with missing fair value: 11
 - No filed total in NUM: False
 - Custom tag used in the SOI: False; custom fair-value facts in NUM: 13
@@ -300,19 +248,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Root-cause category:** other
 - **Example:** 0001496099-26-000029 / soi_row 137183 (NMFC Senior Loan Program III LLC: $157.9M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the joint venture's own portfolio rows and keep only the BDC's interest in the JV, which the filed total counts.
-
-## MORGAN STANLEY DIRECT LENDING FUND (0001193125-26-337915)
-
-- Gap: +12.93%
-- Holdings identified: 1040; current SOI rows without an identifier: 159
-- Holdings with missing fair value: 283
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 386
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +12.93% ($459.7M): holdings $4,014.0M vs filed $3,554.3M. Rows with neither cost nor principal (e.g. 'Capstone Lending LLC' repeating the JV equity interest). 76% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 5 rows sum to $135.3M; without them the gap would be +9.13%; the remainder is not identified from the data sets.
-- **Root-cause category:** restated_copies
-- **Example:** 0001193125-26-337915 / soi_row 55783 (Capstone Lending LLC: $102.5M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
 ## PENNANTPARK FLOATING RATE CAPITAL LTD. (0001193125-26-342352)
 
@@ -327,10 +262,23 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-342352 / soi_row 82635 (First Lien Secured Debt Issuer Name Beacon Behavioral Support Services, LLC Acquisition 10: $24.8M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the joint venture's own portfolio rows and keep only the BDC's interest in the JV, which the filed total counts.
 
+## MORGAN STANLEY DIRECT LENDING FUND (0001193125-26-337915)
+
+- Gap: +9.21%
+- Holdings identified: 1036; current SOI rows without an identifier: 159
+- Holdings with missing fair value: 283
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 386
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +12.93% ($459.7M): holdings $4,014.0M vs filed $3,554.3M. Rows with neither cost nor principal (e.g. 'Capstone Lending LLC' repeating the JV equity interest). 76% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 5 rows sum to $135.3M; without them the gap would be +9.13%; the remainder is not identified from the data sets.
+- **Root-cause category:** restated_copies
+- **Example:** 0001193125-26-337915 / soi_row 55783 (Capstone Lending LLC: $102.5M)
+- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+
 ## CARLYLE SECURED LENDING, INC. (0001544206-26-000055)
 
 - Gap: +62.16%
-- Holdings identified: 352; current SOI rows without an identifier: 264
+- Holdings identified: 351; current SOI rows without an identifier: 264
 - Holdings with missing fair value: 0
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 223
@@ -339,32 +287,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Root-cause category:** other
 - **Example:** 0001544206-26-000055 / soi_row 129590 (Middle Market Credit Fund, LLC, Subordinated Loan and Members Interest: $123.8M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the joint venture's own portfolio rows and keep only the BDC's interest in the JV, which the filed total counts.
-
-## SARATOGA INVESTMENT CORP. (0001213900-26-075931)
-
-- Gap: +227.40%
-- Holdings identified: 439; current SOI rows without an identifier: 33
-- Holdings with missing fair value: 31
-- No filed total in NUM: False
-- Custom tag used in the SOI: False; custom fair-value facts in NUM: 14
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +227.40% ($2,561.3M): holdings $3,687.6M vs filed $1,126.3M. Rows without principal are subtotals ('Sub Total Non-control/Non-affiliate investments', '... - Total <industry>'), plus about $370.8M of rows from the Saratoga CLO portfolio. These 283 rows sum to $2,561.1M; without them the gap would be +0.02% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001213900-26-075931 / soi_row 7382 (Sub Total Non-control/Non-affiliate investments: $1,034.7M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
-
-## SIXTH STREET SPECIALTY LENDING, INC. (0001193125-26-332725)
-
-- Gap: +1.72%
-- Holdings identified: 214; current SOI rows without an identifier: 116
-- Holdings with missing fair value: 3
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 68
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +1.72% ($56.8M): holdings $3,358.9M vs filed $3,302.1M. 'IRGSE Holding Corp' (no cost, no principal) equals the sum of the issuer's four instruments (two loans, two equity classes): an issuer total from the affiliated-investments table. 0% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. This row is $58.3M; without it the gap would be -0.05% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001193125-26-332725 / soi_row 121637 (IRGSE Holding Corp: $58.3M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
 ## KKR FS INCOME TRUST (0001628280-26-056131)
 
@@ -394,8 +316,8 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 
 ## MIDCAP FINANCIAL INVESTMENT CORP (0001193125-26-335848)
 
-- Gap: +10.97%
-- Holdings identified: 640; current SOI rows without an identifier: 656
+- Gap: +8.94%
+- Holdings identified: 638; current SOI rows without an identifier: 656
 - Holdings with missing fair value: 60
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 95
@@ -444,19 +366,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-349812 / soi_row 40214 (Consumer Goods: Non-Durable Summer Fridays, LLC First Lien Senior Secured Loan SOFR Floor : $16.1M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the joint venture's own portfolio rows and keep only the BDC's interest in the JV, which the filed total counts.
 
-## PENNANTPARK INVESTMENT CORP (0001193125-26-342350)
-
-- Gap: +137.18%
-- Holdings identified: 616; current SOI rows without an identifier: 67
-- Holdings with missing fair value: 7
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 51
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +137.18% ($1,636.8M): holdings $2,830.0M vs filed $1,193.2M. Joint-venture look-through: 'First Lien ...' rows are the portfolio of PennantPark Senior Secured Loan Fund; issuer rows without cost or principal repeat the JV interests. These 121 rows sum to $1,624.1M; without them the gap would be +1.06%; the remainder is not identified from the data sets.
-- **Root-cause category:** other
-- **Example:** 0001193125-26-342350 / soi_row 148783 (PennantPark Senior Loan Fund, LLC: $191.9M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the joint venture's own portfolio rows and keep only the BDC's interest in the JV, which the filed total counts.
-
 ## CARLYLE CREDIT SOLUTIONS, INC. (0001702510-26-000084)
 
 - Gap: +1.38%
@@ -470,10 +379,23 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001702510-26-000084 / soi_row 106956 (Investments | Affiliated Issuer | Align Precision Group, LLC 1: $21.4M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
+## GOLUB CAPITAL BDC 4, INC. (0001901612-26-000031)
+
+- Gap: +1.17%
+- Holdings identified: 922; current SOI rows without an identifier: 145
+- Holdings with missing fair value: 0
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 15
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** The filing has many repeated zero and small fair values across distinct 'One stop' instruments; no duplicate issuer summary was established from row structure alone.
+- **Root-cause category:** other
+- **Example:** 0001901612-26-000031 / soi_row 43816 (Action Termite Control LLC common stock)
+- **Fix or reason:** No additional rule: the remaining difference is not established from the data set.
+
 ## CAPITAL SOUTHWEST CORP (0000017313-26-000095)
 
-- Gap: +26.45%
-- Holdings identified: 579; current SOI rows without an identifier: 290
+- Gap: +22.01%
+- Holdings identified: 578; current SOI rows without an identifier: 290
 - Holdings with missing fair value: 1
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 260
@@ -482,6 +404,19 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Root-cause category:** restated_copies
 - **Example:** 0000017313-26-000095 / soi_row 40610 (CapTrin Partners, LLC: $97.8M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: coalesce identifiers that differ only in case/punctuation and drop no-cost repeats.
+
+## SARATOGA INVESTMENT CORP. (0001213900-26-075931)
+
+- Gap: +127.40%
+- Holdings identified: 436; current SOI rows without an identifier: 33
+- Holdings with missing fair value: 31
+- No filed total in NUM: False
+- Custom tag used in the SOI: False; custom fair-value facts in NUM: 14
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +227.40% ($2,561.3M): holdings $3,687.6M vs filed $1,126.3M. Rows without principal are subtotals ('Sub Total Non-control/Non-affiliate investments', '... - Total <industry>'), plus about $370.8M of rows from the Saratoga CLO portfolio. These 283 rows sum to $2,561.1M; without them the gap would be +0.02% (within tolerance).
+- **Root-cause category:** totals_counted
+- **Example:** 0001213900-26-075931 / soi_row 7382 (Sub Total Non-control/Non-affiliate investments: $1,034.7M)
+- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
 
 ## CION INVESTMENT CORP (0001534254-26-000010)
 
@@ -508,6 +443,19 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Root-cause category:** totals_counted
 - **Example:** 0001379785-26-000030 / soi_row 76109 (Eclipse Business Capital Holdings LLC | Revolver | Funded: $12.9M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+
+## PENNANTPARK INVESTMENT CORP (0001193125-26-342350)
+
+- Gap: +107.13%
+- Holdings identified: 611; current SOI rows without an identifier: 67
+- Holdings with missing fair value: 7
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 51
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +137.18% ($1,636.8M): holdings $2,830.0M vs filed $1,193.2M. Joint-venture look-through: 'First Lien ...' rows are the portfolio of PennantPark Senior Secured Loan Fund; issuer rows without cost or principal repeat the JV interests. These 121 rows sum to $1,624.1M; without them the gap would be +1.06%; the remainder is not identified from the data sets.
+- **Root-cause category:** other
+- **Example:** 0001193125-26-342350 / soi_row 148783 (PennantPark Senior Loan Fund, LLC: $191.9M)
+- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the joint venture's own portfolio rows and keep only the BDC's interest in the JV, which the filed total counts.
 
 ## SLR INVESTMENT CORP. (0001193125-26-332726)
 
@@ -600,19 +548,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001628280-26-056136 / soi_row 44850 (Affiliated Issuer | KSC I Aircraft LP, ABF Equity: $37.0M)
 - **Fix or reason:** None by dropping rows: the filer nets unfunded commitments out of its filed total (negative InvestmentTypeAxis fact in NUM). Reconciling needs a documented adjustment for that NUM fact (Part 2), not a row filter.
 
-## LORD ABBETT PRIVATE CREDIT FUND S (0000930413-26-002500)
-
-- Gap: +318.49%
-- Holdings identified: 207; current SOI rows without an identifier: 153
-- Holdings with missing fair value: 9
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +318.49% ($1,368.8M): holdings $1,798.5M vs filed $429.8M. As for the other Lord Abbett fund: category and industry members on the identifier axis are totals counted as holdings. These 33 rows sum to $1,263.4M; without them the gap would be +24.52%; the remainder is not identified from the data sets.
-- **Root-cause category:** totals_counted
-- **Example:** 0000930413-26-002500 / soi_row 106979 (Investments at Fair Value [Member]: $429.8M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
-
 ## 26NORTH BDC, INC. (0001193125-26-340235)
 
 - Gap: -2.07%
@@ -691,11 +626,24 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-336794 / soi_row 61619 (Controlled Affiliates, 36th Street Capital Partners Holdings, LLC, Senior Note, 12%, due 1: $59.8M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
+## LORD ABBETT PRIVATE CREDIT FUND S (0000930413-26-002500)
+
+- Gap: +217.70%
+- Holdings identified: 205; current SOI rows without an identifier: 153
+- Holdings with missing fair value: 9
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +318.49% ($1,368.8M): holdings $1,798.5M vs filed $429.8M. As for the other Lord Abbett fund: category and industry members on the identifier axis are totals counted as holdings. These 33 rows sum to $1,263.4M; without them the gap would be +24.52%; the remainder is not identified from the data sets.
+- **Root-cause category:** totals_counted
+- **Example:** 0000930413-26-002500 / soi_row 106979 (Investments at Fair Value [Member]: $429.8M)
+- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
+
 ## GLADSTONE INVESTMENT CORPORATIONDE (0001321741-26-000017)
 
-- Gap: +6.23%
+- Gap: +6.24%
 - Holdings identified: 75; current SOI rows without an identifier: 79
-- Holdings with missing fair value: 1
+- Holdings with missing fair value: 0
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 16
 - Negative fair value tagged by investment type in NUM: 0
@@ -717,36 +665,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001811972-26-000018 / soi_row 50780 (Banff Partners LP: $14.7M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: drop the rows that lack the filer's issuer-affiliation suffix (' | ...'), which repeat or total schedule holdings.
 
-## APOLLO ORIGINATION II (UL) CAPITAL TRUST (0001193125-26-347347)
-
-- Gap: +83.87%
-- Holdings identified: 159; current SOI rows without an identifier: 204
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 31
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +83.87% ($582.4M): holdings $1,276.8M vs filed $694.4M. A single row named 'Co-investment' is a category subtotal tagged as a holding. This row is $582.4M; without it the gap would be +0.00% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001193125-26-347347 / soi_row 59251 (Co-investment: $582.4M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
-
-## PHENIXFIN CORP (0001213900-26-085667)
-
-- Gap: n/a
-- Holdings identified: 97; current SOI rows without an identifier: 73
-- Holdings with missing fair value: 5
-- No filed total in NUM: True
-- Custom tag used in the SOI: False; custom fair-value facts in NUM: 29
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** No undimensioned InvestmentOwnedAtFairValue fact at the period end in NUM. It reports InvestmentsFairValueDisclosure = $301.6M instead, which is not the required fact. Holdings identified: 97, $1,206.5M.
-- **Root-cause category:** no_filed_total
-- **Example:** 0001213900-26-085667 / NUM: no InvestmentOwnedAtFairValue with dimn=0 at 2026-06-30 (SUB period)
-- **Fix or reason:** None possible: the filing has no undimensioned InvestmentOwnedAtFairValue fact at the period end, so there is no reconciliation target.
-
 ## SILVER POINT SPECIALTY LENDING FUND (0001193125-26-337440)
 
-- Gap: +4.41%
-- Holdings identified: 211; current SOI rows without an identifier: 160
+- Gap: +4.32%
+- Holdings identified: 210; current SOI rows without an identifier: 160
 - Holdings with missing fair value: 1
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 62
@@ -782,18 +704,31 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-351877 / soi_row 152571 (Portfolio Company Heritage Partners Investment Type Bank Loans: $6.6M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
-## LAFAYETTE SQUARE USA, INC. (0001628280-26-051793)
+## PHENIXFIN CORP (0001213900-26-085667)
 
-- Gap: +8.31%
-- Holdings identified: 150; current SOI rows without an identifier: 114
+- Gap: n/a
+- Holdings identified: 95; current SOI rows without an identifier: 73
+- Holdings with missing fair value: 5
+- No filed total in NUM: True
+- Custom tag used in the SOI: False; custom fair-value facts in NUM: 29
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** No undimensioned InvestmentOwnedAtFairValue fact at the period end in NUM. It reports InvestmentsFairValueDisclosure = $301.6M instead, which is not the required fact. Holdings identified: 97, $1,206.5M.
+- **Root-cause category:** no_filed_total
+- **Example:** 0001213900-26-085667 / NUM: no InvestmentOwnedAtFairValue with dimn=0 at 2026-06-30 (SUB period)
+- **Fix or reason:** None possible: the filing has no undimensioned InvestmentOwnedAtFairValue fact at the period end, so there is no reconciliation target.
+
+## OAKTREE GARDENS OLP, LLC (0001974793-26-000013)
+
+- Gap: +1.76%
+- Holdings identified: 81; current SOI rows without an identifier: 42
 - Holdings with missing fair value: 0
 - No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 18
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 23
 - Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +8.31% ($81.7M): holdings $1,065.4M vs filed $983.7M. Rows with neither cost nor principal (affiliated/controlled-investments table rows). 100% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 18 rows sum to $81.7M; without them the gap would be +0.00% (within tolerance).
-- **Root-cause category:** restated_copies
-- **Example:** 0001628280-26-051793 / soi_row 145413 (NW1LS CO-INVEST LP: $12.1M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+- **Evidence:** A few distinct instruments share small or zero fair values; no aggregate/category row remains after the structural rules.
+- **Root-cause category:** other
+- **Example:** 0001974793-26-000013 / soi_row 46981 (Angel Lux Bidco first-lien term loan)
+- **Fix or reason:** No additional rule: the remaining difference is not established from the data set.
 
 ## JOHN HANCOCK COMVEST PRIVATE INCOME FUND (0001193125-26-349413)
 
@@ -807,19 +742,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Root-cause category:** restated_copies
 - **Example:** 0001193125-26-349413 / soi_row 44737 (Affiliated investments Calidris Investment Partners Holdings Ltd - Term Loan First Lien Se: $8.2M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
-## GLADSTONE CAPITAL CORP (0001143513-26-000012)
-
-- Gap: -2.23%
-- Holdings identified: 135; current SOI rows without an identifier: 94
-- Holdings with missing fair value: 2
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 25
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap -2.23% (-$21.3M): holdings $932.0M vs filed $953.3M. The baseline rule_totals dropped real holdings 'Total Access Elevator, LLC' (5 rows) and 'Total Safety Holdings, LLC'; their NUM per-holding facts make up the whole shortfall.
-- **Root-cause category:** other
-- **Example:** 0001143513-26-000012 / soi_row 173050 (Total Access Elevator, LLC  Term Debt: $17.7M)
-- **Fix or reason:** Not applied in Part 3. The kit's rule_totals regex '^total' drops real borrowers whose names start with 'Total'; Part 2 should tighten it (e.g. not drop rows that carry an instrument, cost or principal).
 
 ## WHITEHORSE FINANCE, INC. (0001104659-26-093465)
 
@@ -886,36 +808,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-344075 / soi_row 61741 (Controlled Investments, Industry Investment Funds and Vehicles, Company Senior Direct Lend: $171.9M)
 - **Fix or reason:** No fix: the root cause is not identified from the data sets alone; it needs a read of the filing's schedule.
 
-## MUZINICH BDC, INC. (0001213900-26-089024)
-
-- Gap: n/a
-- Holdings identified: 54; current SOI rows without an identifier: 40
-- Holdings with missing fair value: 9
-- No filed total in NUM: True
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 17
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** No undimensioned InvestmentOwnedAtFairValue fact at the period end in NUM. Holdings identified: 54, $814.1M.
-- **Root-cause category:** no_filed_total
-- **Example:** 0001213900-26-089024 / NUM: no InvestmentOwnedAtFairValue with dimn=0 at 2026-06-30 (SUB period)
-- **Fix or reason:** None possible: the filing has no undimensioned InvestmentOwnedAtFairValue fact at the period end, so there is no reconciliation target.
-
-## BCP INVESTMENT CORP (0001193125-26-337959)
-
-- Gap: +68.93%
-- Holdings identified: 238; current SOI rows without an identifier: 96
-- Holdings with missing fair value: 40
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 111
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +68.93% ($312.1M): holdings $764.8M vs filed $452.7M. Rows without cost (affiliated/controlled-investments table rows). 34% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 41 rows sum to $312.3M; without them the gap would be -0.05% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001193125-26-337959 / soi_row 137254 (Non Controlled Affiliated and Controlled Investments [Member]: $106.4M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
 ## BLUE OWL CAPITAL CORP II (0001655887-26-000016)
 
-- Gap: +10.50%
-- Holdings identified: 380; current SOI rows without an identifier: 134
+- Gap: +6.73%
+- Holdings identified: 376; current SOI rows without an identifier: 134
 - Holdings with missing fair value: 138
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 184
@@ -924,19 +820,6 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Root-cause category:** totals_counted
 - **Example:** 0001655887-26-000016 / soi_row 136792 (New PLI Holdings, LLC (dba PLI): $25.8M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
-## TRIPLEPOINT VENTURE GROWTH BDC CORP. (0001580345-26-000025)
-
-- Gap: -2.87%
-- Holdings identified: 309; current SOI rows without an identifier: 159
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 53
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap -2.87% (-$22.4M): holdings $758.3M vs filed $780.7M. The baseline rule_totals dropped the real borrower 'Total Expert Inc.' (growth capital loan and warrant); its NUM per-holding facts make up the whole shortfall.
-- **Root-cause category:** other
-- **Example:** 0001580345-26-000025 / soi_row 173059 (Total Expert Inc. | Growth Capital Loan: $22.1M)
-- **Fix or reason:** Not applied in Part 3. The kit's rule_totals regex '^total' drops real borrowers whose names start with 'Total'; Part 2 should tighten it (e.g. not drop rows that carry an instrument, cost or principal).
 
 ## TCW DIRECT LENDING VIII LLC (0001193125-26-346657)
 
@@ -964,18 +847,31 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-334649 / soi_row 60406 (Company Non-controlled, non-affiliated investments Debt Investments Professional Services : $62.3M)
 - **Fix or reason:** No fix: the root cause is not identified from the data sets alone; it needs a read of the filing's schedule.
 
-## MUZINICH CORPORATE LENDING INCOME FUND, INC. (0001213900-26-089203)
+## MUZINICH BDC, INC. (0001213900-26-089024)
 
 - Gap: n/a
-- Holdings identified: 117; current SOI rows without an identifier: 38
-- Holdings with missing fair value: 2
+- Holdings identified: 53; current SOI rows without an identifier: 40
+- Holdings with missing fair value: 9
 - No filed total in NUM: True
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 17
 - Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** No undimensioned InvestmentOwnedAtFairValue fact at the period end in NUM. It reports InvestmentsFairValueDisclosure = $102.4M instead, which is not the required fact. Holdings identified: 117, $591.1M.
+- **Evidence:** No undimensioned InvestmentOwnedAtFairValue fact at the period end in NUM. Holdings identified: 54, $814.1M.
 - **Root-cause category:** no_filed_total
-- **Example:** 0001213900-26-089203 / NUM: no InvestmentOwnedAtFairValue with dimn=0 at 2026-06-30 (SUB period)
+- **Example:** 0001213900-26-089024 / NUM: no InvestmentOwnedAtFairValue with dimn=0 at 2026-06-30 (SUB period)
 - **Fix or reason:** None possible: the filing has no undimensioned InvestmentOwnedAtFairValue fact at the period end, so there is no reconciliation target.
+
+## BCP INVESTMENT CORP (0001193125-26-337959)
+
+- Gap: +46.99%
+- Holdings identified: 237; current SOI rows without an identifier: 96
+- Holdings with missing fair value: 40
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 111
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +68.93% ($312.1M): holdings $764.8M vs filed $452.7M. Rows without cost (affiliated/controlled-investments table rows). 34% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 41 rows sum to $312.3M; without them the gap would be -0.05% (within tolerance).
+- **Root-cause category:** totals_counted
+- **Example:** 0001193125-26-337959 / soi_row 137254 (Non Controlled Affiliated and Controlled Investments [Member]: $106.4M)
+- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
 ## WEST BAY BDC LLC (0001193125-26-344618)
 
@@ -1029,6 +925,19 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001628280-26-056471 / soi_row 55618 (Cannabis: $198.4M)
 - **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
 
+## MUZINICH CORPORATE LENDING INCOME FUND, INC. (0001213900-26-089203)
+
+- Gap: n/a
+- Holdings identified: 114; current SOI rows without an identifier: 38
+- Holdings with missing fair value: 2
+- No filed total in NUM: True
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** No undimensioned InvestmentOwnedAtFairValue fact at the period end in NUM. It reports InvestmentsFairValueDisclosure = $102.4M instead, which is not the required fact. Holdings identified: 117, $591.1M.
+- **Root-cause category:** no_filed_total
+- **Example:** 0001213900-26-089203 / NUM: no InvestmentOwnedAtFairValue with dimn=0 at 2026-06-30 (SUB period)
+- **Fix or reason:** None possible: the filing has no undimensioned InvestmentOwnedAtFairValue fact at the period end, so there is no reconciliation target.
+
 ## PGIM PRIVATE CREDIT FUND (0001193125-26-349252)
 
 - Gap: +1.00%
@@ -1057,9 +966,9 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 
 ## GOLUB CAPITAL PRIVATE INCOME FUND I (0002082559-26-000086)
 
-- Gap: -5.30%
+- Gap: -3.10%
 - Holdings identified: 310; current SOI rows without an identifier: 131
-- Holdings with missing fair value: 1
+- Holdings with missing fair value: 0
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 15
 - Negative fair value tagged by investment type in NUM: 0
@@ -1081,24 +990,37 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001487918-26-000078 / soi_row 6058 (Pfanstiehl Holdings, Inc., Common Equity: $94.5M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
-## TCW DIRECT LENDING LLC (0001193125-26-346645)
+## TRIPLEPOINT PRIVATE VENTURE CREDIT INC. (0001792509-26-000024)
 
-- Gap: +100.00%
-- Holdings identified: 49; current SOI rows without an identifier: 17
+- Gap: +1.88%
+- Holdings identified: 449; current SOI rows without an identifier: 192
 - Holdings with missing fair value: 0
 - No filed total in NUM: False
-- Custom tag used in the SOI: True; custom fair-value facts in NUM: 75
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 64
 - Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +100.00% ($178.3M): holdings $356.7M vs filed $178.3M. Every holding is listed twice: once in the schedule (long identifier, with cost and principal) and once in the affiliated-investments table (short identifier, fair value only). These 18 rows sum to $178.3M; without them the gap would be +0.00% (within tolerance).
-- **Root-cause category:** restated_copies
-- **Example:** 0001193125-26-346645 / soi_row 154979 (Precision Products Machining Group, LLC (fka H-D Advanced Manufacturing Company) Class A U: $46.6M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+- **Evidence:** All remaining rows carry detailed instrument or equity/warrant identifiers; no structural total or duplicate row remains.
+- **Root-cause category:** other
+- **Example:** 0001792509-26-000024 / soi_row 173061 (Total Expert Inc common stock and warrant investment)
+- **Fix or reason:** No additional rule: the remaining difference is not established from the data set.
+
+## NEOSTELLAR CAPITAL CORP. (0001493152-26-036285)
+
+- Gap: -16.50%
+- Holdings identified: 39; current SOI rows without an identifier: 33
+- Holdings with missing fair value: 8
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 15
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** 119 current-period SOI rows, none with 'Investment, Identifier Axis'; filed total $405.9M.
+- **Root-cause category:** no_identified_holdings
+- **Example:** 0001493152-26-036285 / soi_row 10586 (current-period row without an identifier)
+- **Fix or reason:** None possible from SOI: no SOI row of this filing carries 'Investment, Identifier Axis' (holdings are on a custom axis), so no holding can be identified.
 
 ## KAYNE DL 2021, INC. (0001193125-26-342417)
 
 - Gap: -5.98%
 - Holdings identified: 239; current SOI rows without an identifier: 43
-- Holdings with missing fair value: 1
+- Holdings with missing fair value: 0
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 10
 - Negative fair value tagged by investment type in NUM: 0
@@ -1120,6 +1042,19 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-344601 / soi_row 138708 (Non-Controlled Affiliated Investments Goldman Sachs Financial Square Government Fund: $34.3M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
+## TCW DIRECT LENDING LLC (0001193125-26-346645)
+
+- Gap: +64.49%
+- Holdings identified: 44; current SOI rows without an identifier: 17
+- Holdings with missing fair value: 0
+- No filed total in NUM: False
+- Custom tag used in the SOI: True; custom fair-value facts in NUM: 75
+- Negative fair value tagged by investment type in NUM: 0
+- **Evidence:** Gap +100.00% ($178.3M): holdings $356.7M vs filed $178.3M. Every holding is listed twice: once in the schedule (long identifier, with cost and principal) and once in the affiliated-investments table (short identifier, fair value only). These 18 rows sum to $178.3M; without them the gap would be +0.00% (within tolerance).
+- **Root-cause category:** restated_copies
+- **Example:** 0001193125-26-346645 / soi_row 154979 (Precision Products Machining Group, LLC (fka H-D Advanced Manufacturing Company) Class A U: $46.6M)
+- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
+
 ## GREAT ELM CAPITAL CORP. (0001193125-26-335023)
 
 - Gap: -1.46%
@@ -1135,9 +1070,9 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 
 ## GOLUB CAPITAL PRIVATE INCOME FUND S (0002082557-26-000059)
 
-- Gap: -2.19%
+- Gap: +1.59%
 - Holdings identified: 310; current SOI rows without an identifier: 132
-- Holdings with missing fair value: 2
+- Holdings with missing fair value: 1
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 15
 - Negative fair value tagged by investment type in NUM: 0
@@ -1187,8 +1122,8 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 
 ## RAND CAPITAL CORP (0001193125-26-333983)
 
-- Gap: +42.75%
-- Holdings identified: 94; current SOI rows without an identifier: 45
+- Gap: +37.01%
+- Holdings identified: 93; current SOI rows without an identifier: 45
 - Holdings with missing fair value: 48
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 15
@@ -1198,36 +1133,10 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Example:** 0001193125-26-333983 / soi_row 53551 (BMP Food Service Supply Holdco, LLC - $7,235,000 Fourth Amended and Restated Term Note, $4: $4.3M)
 - **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
 
-## PROSPECT FLOATING RATE & ALTERNATIVE INCOME FUND, INC. (0001521945-26-000095)
-
-- Gap: +4.79%
-- Holdings identified: 79; current SOI rows without an identifier: 115
-- Holdings with missing fair value: 11
-- No filed total in NUM: False
-- Custom tag used in the SOI: False; custom fair-value facts in NUM: 32
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +4.79% ($3.5M): holdings $76.7M vs filed $73.1M. Rows with neither cost nor principal. 100% of these dollars repeat a fair value held elsewhere in the filing (copies), the rest are totals. These 2 rows sum to $3.5M; without them the gap would be +0.00% (within tolerance).
-- **Root-cause category:** restated_copies
-- **Example:** 0001521945-26-000095 / soi_row 197117 (WatchGuard Technologies, Inc: $3.4M)
-- **Fix or reason:** Not applied in Part 3 (cleaning rules are Part 2's). Proposed rule: drop identifier-axis rows with neither cost nor principal that repeat a holding already in the schedule or add up the issuer's own instruments (affiliated/controlled-investments table rows).
-
-## NEXPOINT CAPITAL, INC. (0001193125-26-351830)
-
-- Gap: +98.30%
-- Holdings identified: 22; current SOI rows without an identifier: 30
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: False; custom fair-value facts in NUM: 37
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** Gap +98.30% ($37.7M): holdings $76.1M vs filed $38.4M. A 'Net Assets' row on the identifier axis is counted as a holding. This row is $37.7M; without it the gap would be +0.00% (within tolerance).
-- **Root-cause category:** totals_counted
-- **Example:** 0001193125-26-351830 / soi_row 136462 (Net Assets: $37.7M)
-- **Fix or reason:** Not applied in Part 3. Proposed Part 2 rule: extend rule_totals to subtotal rows the baseline regex misses (this filer's pattern is shown in the evidence).
-
 ## PRINCETON CAPITAL CORP (0001213900-26-090000)
 
-- Gap: +78.80%
-- Holdings identified: 32; current SOI rows without an identifier: 27
+- Gap: -10.60%
+- Holdings identified: 31; current SOI rows without an identifier: 27
 - Holdings with missing fair value: 26
 - No filed total in NUM: False
 - Custom tag used in the SOI: True; custom fair-value facts in NUM: 0
@@ -1248,17 +1157,4 @@ For each filing: the evidence, the root-cause category, an example (accession nu
 - **Evidence:** 457 current-period SOI rows, none with 'Investment, Identifier Axis'; filed total $520.6M.
 - **Root-cause category:** no_identified_holdings
 - **Example:** 0001398344-26-014697 / soi_row 14549 (current-period row without an identifier)
-- **Fix or reason:** None possible from SOI: no SOI row of this filing carries 'Investment, Identifier Axis' (holdings are on a custom axis), so no holding can be identified.
-
-## NEOSTELLAR CAPITAL CORP. (0001493152-26-036285)
-
-- Gap: n/a
-- Holdings identified: 0; current SOI rows without an identifier: 119
-- Holdings with missing fair value: 0
-- No filed total in NUM: False
-- Custom tag used in the SOI: False; custom fair-value facts in NUM: 15
-- Negative fair value tagged by investment type in NUM: 0
-- **Evidence:** 119 current-period SOI rows, none with 'Investment, Identifier Axis'; filed total $405.9M.
-- **Root-cause category:** no_identified_holdings
-- **Example:** 0001493152-26-036285 / soi_row 10586 (current-period row without an identifier)
 - **Fix or reason:** None possible from SOI: no SOI row of this filing carries 'Investment, Identifier Axis' (holdings are on a custom axis), so no holding can be identified.

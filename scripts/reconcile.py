@@ -24,8 +24,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from lookthrough import clean, holdings, load, mapping, paths, reconcile, report, tables  # noqa: E402
 
-# The kit's baseline rules; Part 2 adds the team's rules here (or replaces this with a clean stage).
-RULES = [clean.rule_totals, clean.rule_cash]
+# Structural rules in deliberate semantic order; coverage is measured only
+# after the rule definitions and order have been fixed.
+RULES = clean.CLEANING_RULES
 
 P = paths.load_params(ROOT)
 rdir = paths.release_dir(P, ROOT)
@@ -38,14 +39,65 @@ colmap = mapping.map_soi_columns(header, tag)
 soi = load.load_soi(rdir, mapping.soi_usecols(header, colmap))
 soi = soi[soi["adsh"].isin(sub["adsh"])]
 canon = holdings.split_periods(mapping.to_canonical(soi, colmap), sub)
+canon = clean.recover_axis_identifiers(canon)
 num = load.load_num(rdir, tags=[reconcile.FV_TAG], custom_fv=True)
-h = tables.load_table(ROOT / "outputs" / "canonical" / "holdings")
+h_all = tables.load_table(ROOT / "outputs" / "canonical" / "holdings")
 
 # 1. Clean the current period
-kept, log = clean.apply_rules(h[h["is_current"]], RULES)
+filed = reconcile.filed_totals(num, sub)
+attempted = set(soi["adsh"])
+h = h_all[h_all["is_current"]].copy()
+base_cov = clean.coverage_value(h, filed, sub, tol, attempted)
+
+# Every non-mask transformation is represented in the log. Comparative rows
+# were already classified by the parse stage, axis identifiers were recovered
+# before coalescing, and custom values/attributes are applied here.
+pre_axis = h.loc[h.get(
+    "identifier_source", pd.Series(index=h.index, dtype=object)).ne(
+        "fallback axis")].copy()
+axis_mask = h.get(
+    "identifier_source", pd.Series(index=h.index, dtype=object)
+).eq("fallback axis")
+log_rows = [
+    clean.transformation_entry(
+        "transform_current_period",
+        "comparative and other-date rows excluded from the current panel",
+        "The row date differs from the filing period in SUB.",
+        h_all, ~h_all["is_current"], base_cov, base_cov),
+    clean.transformation_entry(
+        "transform_axis_identifiers",
+        "identifier recovered from a fallback axis for an ID-less filing",
+        "Every current row in that filing lacks the standard identifier axis; "
+        "the Legal Entity member itself names the investee.",
+        h, axis_mask,
+        clean.coverage_value(pre_axis, filed, sub, tol, attempted), base_cov),
+]
+
+h = clean.recover_custom_fair_values(h, num, sub)
+custom_mask = h["fair_value_source"].fillna("").str.startswith("NUM ")
+log_rows.append(clean.transformation_entry(
+    "transform_custom_fair_values",
+    "fair value recovered from a custom NUM tag keyed by identifier",
+    "The SOI money-market row has an identifier but no standard fair-value "
+    "fact; NUM supplies the omitted value on that same identifier member.",
+    h, custom_mask, base_cov,
+    clean.coverage_value(h, filed, sub, tol, attempted)))
+
+h = clean.add_cleaning_attributes(h)
+log_rows.append(clean.transformation_entry(
+    "transform_cleaning_attributes",
+    "equity/warrant security class, affiliate category, and unfunded flag",
+    "Security and affiliate terms are filed in the identifier or standard "
+    "security axes; commitment columns carry unfunded amounts.",
+    h, pd.Series(True, index=h.index),
+    clean.coverage_value(h, filed, sub, tol, attempted),
+    clean.coverage_value(h, filed, sub, tol, attempted)))
+
+kept, rule_log = clean.apply_rules(h, RULES, filed=filed, sub=sub,
+                                   tolerance=tol, soi_adsh=attempted)
+log = pd.concat([pd.DataFrame(log_rows), rule_log], ignore_index=True)
 
 # 2. Reconcile and admit
-filed = reconcile.filed_totals(num, sub)
 rec = reconcile.reconcile(kept, filed, sub, tol, soi_adsh=set(soi["adsh"]))
 no_soi = sub.loc[~sub["adsh"].isin(soi["adsh"]), ["adsh", "cik", "name", "form", "period"]]
 

@@ -145,7 +145,7 @@ adsh,name,identifier,n_rows,n_conflicts,conflict_fields,resolution,fair_value,so
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,Performance Health Holdings Inc | Health Care Distributors | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,3442000.0,41720;42330
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,Ping Identity Holding Corp. | Systems Software | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,5695000.0,41722;42334
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,Pioneer Opco LLC | Casinos & Gaming | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,3794000.0,41723;42335
-0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,"Pluralsight, LLC | Application Software | Common Stock",2,1,cost,subsidiary: added the pieces held by each subsidiary,0.0,41724;42336
+0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,"Pluralsight, LLC | Application Software | Common Stock",2,2,cost,subsidiary: added the pieces held by each subsidiary,0.0,41724;42336
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,"Pluralsight, LLC | Application Software | First Lien Term Loan 1",2,4,fair_value;cost;principal;spread,subsidiary: added the pieces held by each subsidiary,752000.0,41725;42337
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,"Pluralsight, LLC | Application Software | First Lien Term Loan 2",2,4,fair_value;cost;principal;spread,subsidiary: added the pieces held by each subsidiary,1082000.0,41726;42338
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,PointClickCare Technologies Inc | Health Care Technology | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,3471000.0,41730;42342
@@ -158,7 +158,7 @@ adsh,name,identifier,n_rows,n_conflicts,conflict_fields,resolution,fair_value,so
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,Restoration Hardware Inc | Homefurnishing Retail | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,3434000.0,41738;42350
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SCIH Salt Holdings Inc | Diversified Chemicals | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,6244000.0,41740;42351
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SCIL IV LLC | Specialty Chemicals | First Lien Term Loan,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,3483000.0,41742;42353
-0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SHO Holding I Corporation | Footwear | Common Stock,2,2,fair_value;cost,subsidiary: added the pieces held by each subsidiary,5455000.0,41744;42356
+0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SHO Holding I Corporation | Footwear | Common Stock,2,3,fair_value;cost,subsidiary: added the pieces held by each subsidiary,5455000.0,41744;42356
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SHO Holding I Corporation | Footwear | First Lien Term Loan 1,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,1606000.0,41745;42357
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SHO Holding I Corporation | Footwear | First Lien Term Loan 2,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,4375000.0,41746;42358
 0001414932-26-000017,OAKTREE SPECIALTY LENDING CORP,SHO Holding I Corporation | Footwear | First Lien Term Loan 3,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,2440000.0,41747;42359
@@ -199,6 +199,22 @@ adsh,name,identifier,n_rows,n_conflicts,conflict_fields,resolution,fair_value,so
 0001487918-26-000078,OFS CAPITAL CORP,Portfolio Company One GI LLC Investment Type First Lien Debt One,2,1,pik_rate,first value in SOI order (kit rule),,9928;9951
 0001487918-26-000078,OFS CAPITAL CORP,"Portfolio Company RideNow Group, Inc. (F/K/A RumbleOn, Inc.) Investment Type First Lien Debt",2,1,pik_rate,first value in SOI order (kit rule),,9933;9956
 0001487918-26-000078,OFS CAPITAL CORP,"Portfolio Company RideNow Group, Inc. (F/K/A RumbleOn, Inc.) Investment Type First Lien Debt One",2,1,pik_rate,first value in SOI order (kit rule),,9931;9954
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Blink Health, Inc.",3,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),7499992.0,10695;10732;11971
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"CTN Holdings, Inc. (d/b/a Catona Climate, f/k/a Aspiration Partners, Inc.)",3,2,cost,first value in SOI order (kit rule),,10698;10742;11973
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Fullbridge, Inc.",3,1,cost,first value in SOI order (kit rule),,10616;11969;11975
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,GrabAGun Digital Holdings Inc.,3,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),1031972.0,10618;10641;11977
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Learneo, Inc. (f/k/a Course Hero, Inc.)",3,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),5369287.0,10704;10740;11979
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,Magnetar Opportunity 2025-4 LP,3,4,fair_value;cost;principal;pct_net_assets,first value in SOI order (kit rule),5200000.0,10589;10590;11980
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Maven Research, Inc.",5,2,cost,first value in SOI order (kit rule),,10715;10717;10728;10730;11952
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Neutron Holdings, Inc. (d/b/a/ Lime)",4,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),55275.0,10643;10655;10657;11982
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Orchard Technologies, Inc.",3,2,cost,first value in SOI order (kit rule),80800.0,10621;10749;11984
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"PayJoy, Inc.",3,3,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),2499758.0,10734;10759;11986
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,Shogun Enterprises Inc,6,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),486511.0,10645;10711;10713;10721;10723;11988
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"StormWind, LLC",9,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),124253.0,10685;10702;10709;10719;10726;10738;10745;10747;11954
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,Supplying Demand Inc,3,3,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),250000.0,10751;10753;11990
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,Trax Ltd.,3,2,cost,first value in SOI order (kit rule),,10627;10676;11992
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,"Whoop, Inc.",3,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),149338617.0,10736;10756;11994
+0001493152-26-036285,NEOSTELLAR CAPITAL CORP.,Xgroup Holdings Inc D B A X Point,4,4,fair_value;cost;pct_net_assets,first value in SOI order (kit rule),220201.0,10689;10691;10706;11995
 0001496099-26-000029,NEW MOUNTAIN FINANCE CORP,First Lien Investments,2,1,interest_rate,subsidiary: added the pieces held by each subsidiary,,41320;41571
 0001496099-26-000029,NEW MOUNTAIN FINANCE CORP,Funded Investments - First lien | ADMI Corp. (aka Aspen Dental),2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,3688000.0,41081;41328
 0001496099-26-000029,NEW MOUNTAIN FINANCE CORP,Funded Investments - First lien | Accelya Lux Finco S.a r.l.,2,3,fair_value;cost;principal,subsidiary: added the pieces held by each subsidiary,25575000.0,41079;41324

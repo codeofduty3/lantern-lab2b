@@ -7,7 +7,10 @@ from . import reconcile, tables
 
 PANEL_COLS = ["adsh", "cik", "name", "period", "identifier", "investment_type", "industry", "affiliation",
               "principal", "cost", "fair_value", "interest_rate", "spread", "pik_rate", "maturity",
-              "pct_net_assets", "source_rows", "n_rows", "n_conflicts"]
+              "pct_net_assets", "source_rows", "n_rows", "n_conflicts",
+              "identifier_source", "fair_value_source", "security_class",
+              "affiliation_category", "has_unfunded_commitment", "shares",
+              "unfunded_commitment"]
 
 
 def write_outputs(kept: pd.DataFrame, rec: pd.DataFrame, diag: pd.DataFrame, log: pd.DataFrame, root, P,
