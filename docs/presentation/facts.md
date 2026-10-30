@@ -424,6 +424,10 @@ loaded. No screenshots were fabricated.
 - The repository does not contain the exact `data/raw.dvc` path expected by one
   review checklist; it tracks `data/raw` inline through `dvc.yaml` and
   `dvc.lock`.
+- `docs/codelab/README.md` says “805 current SOI rows” for the traced filing.
+  The current data have 1,085 current rows in total and 805 current rows with an
+  identifier. The 403 coalesced holdings count is consistent; the README should
+  describe 805 as identified rows to avoid ambiguity.
 
 ## 13. Likely grader questions
 
