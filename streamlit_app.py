@@ -354,7 +354,7 @@ def codelab_page() -> None:
         "the panel, reconciliation, verification, DVC, and serving layers."
     )
     st.link_button("Open the codelab", CODELAB_URL, width="stretch")
-    st.iframe(CODELAB_URL, height=900, scrolling=True)
+    st.iframe(CODELAB_URL, height=900)
 
 
 def main() -> None:
