@@ -2,6 +2,9 @@
 __pycache__/
 .ipynb_checkpoints/
 data/raw/
+data/cache/
 outputs/
 reports/*.png
 *.zip
+.vercel
+.env*

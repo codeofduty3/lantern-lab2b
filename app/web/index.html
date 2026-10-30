@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Project LANTERN's traceable BDC holdings coverage for the 2026 Q3 SEC release."
+    />
+    <title>Coverage · Project LANTERN</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="coverage" data-nav="coverage">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html"><span class="brand-mark"></span>Project LANTERN</a>
+        <div class="nav-links">
+          <a data-nav-item="coverage" href="index.html">Coverage</a>
+          <a data-nav-item="filings" href="filings.html">Filings</a>
+          <a data-nav-item="excluded" href="excluded.html">Excluded</a>
+          <a data-nav-item="method" href="method.html">Method</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="page-head">
+        <span class="eyebrow">2026 Q3 · SEC BDC data sets</span>
+        <h1>See the holdings behind the number.</h1>
+        <p class="lede">
+          Project LANTERN reconciles BDC schedules of investments to each fund's
+          reported fair value. Every admitted holding remains traceable to its
+          filing, source rows and cleaning decision.
+        </p>
+      </section>
+
+      <div class="coverage-banner" data-coverage-banner aria-live="polite">
+        <span class="loading">Loading exported coverage…</span>
+      </div>
+      <section class="stat-grid" id="coverage-stats" aria-label="Coverage summary">
+        <div class="stat loading">Loading coverage totals…</div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">The honest scope</span>
+            <h2>Coverage is not 100%.</h2>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Trace the number, then state the share.</strong>
+          <p>
+            The panel admits only filings within one percentage point of the
+            filer's reported fair value. Excluded schedules remain visible with
+            evidence, so a gap is never silently treated as a complete result.
+          </p>
+        </div>
+        <div class="actions">
+          <a class="button" href="filings.html">Explore filings</a>
+          <a class="button secondary" href="method.html">Read the method</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Largest admitted schedules</span>
+            <h2>Numbers with a filing trail</h2>
+            <p>
+              Holdings fair value and the filer's own total are shown side by
+              side. Release-wide coverage still limits how these can be used.
+            </p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>BDC</th>
+                <th class="num">Holdings FV</th>
+                <th class="num">Filed FV</th>
+                <th class="num">Gap</th>
+              </tr>
+            </thead>
+            <tbody id="top-filings">
+              <tr><td colspan="4" class="loading">Loading filings…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Project LANTERN · DAMG 7245</span>
+      <span>Read-only data · <a href="/docs">API documentation</a> · <a href="/codelab/">Open the codelab</a> · <a href="method.html">Rebuild the result</a></span>
+    </footer>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

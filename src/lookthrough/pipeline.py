@@ -11,11 +11,16 @@ def run_baseline(rdir, tolerance, rules=None) -> dict:
     num = load.load_num(rdir, tags=[reconcile.FV_TAG], custom_fv=True)
     canon = holdings.split_periods(mapping.to_canonical(soi, colmap),
                                    sub)
+    canon = clean.recover_axis_identifiers(canon)
     h = holdings.coalesce_holdings(canon)
-    if rules is None:
-        rules = [clean.rule_totals, clean.rule_cash]
-    kept, log = clean.apply_rules(h[h["is_current"]], rules)
+    h = clean.recover_custom_fair_values(h, num, sub)
+    h = clean.add_cleaning_attributes(h)
     filed = reconcile.filed_totals(num, sub)
+    if rules is None:
+        rules = clean.BASELINE_RULES
+    kept, log = clean.apply_rules(
+        h[h["is_current"]], rules, filed=filed, sub=sub,
+        tolerance=tolerance, soi_adsh=set(soi["adsh"]))
     rec = reconcile.reconcile(kept, filed, sub, tolerance,
                               soi_adsh=set(soi["adsh"]))
     diag = reconcile.diagnose(rec, kept, num, canon)

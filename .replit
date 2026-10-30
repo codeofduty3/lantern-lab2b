@@ -1,0 +1,14 @@
+run = "python3 serve_web.py"
+entrypoint = "serve_web.py"
+hidden = [".pythonlibs", "__pycache__", ".dvc/cache", "data/raw", "outputs", "app/data"]
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+PYTHONUNBUFFERED = "1"
+LANTERN_API_BASE = "https://lantern-lab2b.vercel.app/api"
+
+[[ports]]
+localPort = 3000
+externalPort = 80

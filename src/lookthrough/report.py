@@ -7,11 +7,15 @@ from . import reconcile, tables
 
 PANEL_COLS = ["adsh", "cik", "name", "period", "identifier", "investment_type", "industry", "affiliation",
               "principal", "cost", "fair_value", "interest_rate", "spread", "pik_rate", "maturity",
-              "pct_net_assets", "source_rows", "n_rows", "n_conflicts"]
+              "pct_net_assets", "source_rows", "n_rows", "n_conflicts",
+              "identifier_source", "fair_value_source", "security_class",
+              "affiliation_category", "has_unfunded_commitment", "shares",
+              "unfunded_commitment"]
 
 
 def write_outputs(kept: pd.DataFrame, rec: pd.DataFrame, diag: pd.DataFrame, log: pd.DataFrame, root, P,
-                  triage: pd.DataFrame = None, no_soi: pd.DataFrame = None) -> dict:
+                  triage: pd.DataFrame = None, no_soi: pd.DataFrame = None,
+                  write_cleaning_log: bool = True) -> dict:
     """triage: one row per excluded filing (adsh, triage_category, example, evidence, fix), written into
     coverage.csv and triage.md; an excluded filing without a row stays 'to_triage'.
     no_soi: filings in SUB with no SOI rows at all, reported separately."""
@@ -69,5 +73,6 @@ def write_outputs(kept: pd.DataFrame, rec: pd.DataFrame, diag: pd.DataFrame, log
                 f"- **Example:** {note(r.adsh, 'example')}",
                 f"- **Fix or reason:** {note(r.adsh, 'fix')}", ""]
     (rep / "triage.md").write_text("\n".join(tri))
-    log.to_csv(rep / "cleaning_log.csv", index=False)
+    if write_cleaning_log:
+        log.to_csv(rep / "cleaning_log.csv", index=False)
     return {"panel": panel_path, "coverage": rep / "coverage.csv", "triage": rep / "triage.md"}
