@@ -9,6 +9,7 @@ Usage:
 
 from __future__ import annotations
 
+import gzip
 import json
 import math
 import shutil
@@ -19,6 +20,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_DATA = ROOT / "app" / "data"
+SERVE_BUNDLE = ROOT / "app" / "api" / "serve_data.json.gz"
 COVERAGE = ROOT / "reports" / "coverage.csv"
 COVERAGE_METRICS = ROOT / "reports" / "coverage.json"
 TRIAGE_NOTES = ROOT / "docs" / "triage_notes.csv"
@@ -104,6 +106,27 @@ def _write_json(path: Path, value) -> None:
         json.dumps(value, ensure_ascii=False, separators=(",", ":")) + "\n",
         encoding="utf-8",
     )
+
+
+def _write_bundle() -> int:
+    """Write one compressed serving artifact for hosts without ignored files."""
+    names = ["coverage.json", "filings.json", "triage.json", "cleaning_rules.json"]
+    bundle = {
+        name.removesuffix(".json"): json.loads(
+            (APP_DATA / name).read_text(encoding="utf-8")
+        )
+        for name in names
+    }
+    bundle["holdings"] = {
+        path.stem: json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted((APP_DATA / "holdings").glob("*.json"))
+    }
+    payload = json.dumps(
+        bundle, ensure_ascii=False, separators=(",", ":")
+    ).encode("utf-8")
+    SERVE_BUNDLE.parent.mkdir(parents=True, exist_ok=True)
+    SERVE_BUNDLE.write_bytes(gzip.compress(payload, compresslevel=9, mtime=0))
+    return len(payload)
 
 
 def _edgar_url(row: pd.Series) -> str:
@@ -242,8 +265,14 @@ def main() -> None:
         )
 
     total_bytes = sum(path.stat().st_size for path in APP_DATA.rglob("*.json"))
+    bundle_bytes = _write_bundle()
     print(f"Exported {len(filings)} filings ({len(admitted)} with holdings) to {APP_DATA}")
     print(f"Export size: {total_bytes / 1024 / 1024:.1f} MiB")
+    print(
+        f"Serving bundle: {SERVE_BUNDLE.relative_to(ROOT)} "
+        f"({bundle_bytes / 1024 / 1024:.1f} MiB JSON, "
+        f"{SERVE_BUNDLE.stat().st_size / 1024 / 1024:.1f} MiB gzip)"
+    )
 
 
 if __name__ == "__main__":
