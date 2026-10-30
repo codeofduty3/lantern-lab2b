@@ -40,5 +40,14 @@ python tools/smoke_real.py <release> "Name email"   # baseline on any real relea
 `data/fixture/` the synthetic release (rebuild with `python tools/make_fixture.py`); `data/raw/` your release (DVC, never Git);
 `outputs/panel/` the reconciled panel; `reports/` coverage, triage, cleaning log, spot checks; `docs/` schema and pipeline notes.
 
+## Analytical scope
+
+The output panel represents investment holdings used for a borrower-to-BDC
+relationship view and deliberately excludes cash and money-market lines. A
+money-market fund is not a company borrower. Because filers differ on whether
+cash is included in their filed investment total, the exclusion is applied
+uniformly at the panel-scope level and cash-related filing differences remain
+visible in the triage report.
+
 ## Data
 Public data only: the SEC BDC data sets (https://www.sec.gov/data-research/sec-markets-data/bdc-data-sets) and the SEC BDC readme (https://www.sec.gov/files/bdc_readme.pdf). Fixture data is synthetic.

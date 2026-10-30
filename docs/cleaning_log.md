@@ -112,6 +112,15 @@ CORP. (`0001193125-26-335023`), SOI row 129396, is another explicit
 money-market holding. Reported filed-dollar coverage changed from 0.400 to
 0.421.
 
+The panel definition is **investment holdings excluding cash and money-market
+lines**. This is a deliberate scope decision for Quanta's borrower-to-BDC
+relationship view: a money-market fund line does not identify a company that
+borrows from the BDC. Some filers include cash in their filed investment total
+and some do not, so this single scope rule cannot reconcile every filing to
+its filed total. The resulting difference for filers whose totals include cash
+is left visible and categorized in the triage report rather than hidden by a
+filer-specific exception.
+
 ## Investigated, not observed
 
 Superseded or amended filing copies were investigated and not observed: the
