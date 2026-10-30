@@ -189,8 +189,8 @@ Descriptive transformations such as security classification do not drop rows.
 **Goal.** Compare cleaned holdings with the filed total and understand who is
 included.
 
-**Why.** Tom needs the covered share, and Priya needs the filing's own total.
-Admission uses:
+**Why.** Coverage must be stated beside the panel value, and each filing
+detail must show the filer's own total. Admission uses:
 
 ```text
 abs(holdings_fv - filed_fv) / filed_fv <= 0.01
