@@ -82,9 +82,9 @@ The end-to-end code lab is in
 Vercel is used because it can route the static five-page site and the FastAPI
 function without Replit-specific setup. The production app is
 <https://lantern-lab2b.vercel.app>, Swagger is
-<https://lantern-lab2b.vercel.app/docs>, and the tested preview is
-<https://lantern-lab2b-3837dshnw-clutched.vercel.app> (the preview may require
-the Vercel account's authentication).
+<https://lantern-lab2b.vercel.app/docs>. Vercel creates authenticated preview
+deployments for pull requests; use the current preview from Vercel rather than
+treating a fixed, account-protected preview URL as a public API test target.
 
 The `buildCommand` regenerates the compact app data before deployment.
 `vercel.json` excludes the local DVC data, virtual environment and reports from
