@@ -96,7 +96,7 @@ project:
 
 1. Sign in at <https://share.streamlit.io> with GitHub user `danysigha`.
 2. Create a new app from `codeofduty3/lantern-lab2b`.
-3. Select branch `integration/cs2b-final`.
+3. Select branch `main`.
 4. Set main file path to `streamlit_app.py`.
 5. In Advanced settings, select Python 3.12.
 6. Add the secret
@@ -167,7 +167,7 @@ vercel --prod
 ```bash
 git clone https://github.com/codeofduty3/lantern-lab2b.git
 cd lantern-lab2b
-git checkout integration/cs2b-final
+git checkout main
 
 python3 -m venv .venv
 source .venv/bin/activate
