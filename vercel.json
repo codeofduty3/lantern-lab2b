@@ -25,10 +25,6 @@
           "tests/**"
         ]
       }
-    },
-    {
-      "src": "app/web/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -45,8 +41,28 @@
       "dest": "/app/api/index.py"
     },
     {
-      "src": "/(.*)",
-      "dest": "/app/web/$1"
+      "src": "/health",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/coverage",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/filings",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/filings/(.*)",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/triage",
+      "dest": "/app/api/index.py"
+    },
+    {
+      "src": "/cleaning-rules",
+      "dest": "/app/api/index.py"
     }
   ]
 }

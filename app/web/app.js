@@ -1,12 +1,24 @@
 (() => {
   "use strict";
 
+  const config = window.LANTERN_CONFIG || {};
   const isLocal =
     window.location.hostname === "127.0.0.1" ||
     window.location.hostname === "localhost";
-  const API_BASE =
-    window.LANTERN_API_BASE || (isLocal ? "http://127.0.0.1:8000" : "/api");
-  const DOCS_URL = isLocal ? "http://127.0.0.1:8000/docs" : "/docs";
+  const isReplit = /\.replit\.(app|dev)$/.test(window.location.hostname);
+  const API_BASE = (
+    config.apiBase ||
+    window.LANTERN_API_BASE ||
+    (isLocal
+      ? "http://127.0.0.1:8000"
+      : isReplit
+        ? "https://lantern-lab2b.vercel.app/api"
+        : "/api")
+  ).replace(/\/$/, "");
+  const API_ORIGIN = new URL(API_BASE, window.location.href).origin;
+  const DOCS_URL =
+    config.docsUrl || (isLocal ? `${API_ORIGIN}/docs` : `${API_ORIGIN}/docs`);
+  const CODELAB_URL = config.codelabUrl || "/codelab/";
   const validCategories = new Set([
     "comparative_leakage",
     "totals_counted",
@@ -417,6 +429,9 @@
     setActiveNav();
     document.querySelectorAll('a[href="/docs"]').forEach((link) => {
       link.href = DOCS_URL;
+    });
+    document.querySelectorAll('a[href="/codelab/"]').forEach((link) => {
+      link.href = CODELAB_URL;
     });
     const page = document.body.dataset.page;
     try {

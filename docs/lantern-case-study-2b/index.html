@@ -1,0 +1,230 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Project LANTERN: From SEC BDC Data to a Traceable Look-Through Panel</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="lantern-case-study-2b"
+                  title="Project LANTERN: From SEC BDC Data to a Traceable Look-Through Panel"
+                  environment="web"
+                  feedback-link="https://github.com/codeofduty3/lantern-lab2b/issues">
+    
+      <google-codelab-step label="Overview" duration="3">
+        <p>This codelab follows one quarterly SEC Business Development Company (BDC) release from its monthly ZIP files to a reproducible holdings panel, an evidence-based reconciliation report, a read-only API, and a browser UI.</p>
+<p>By the end you will be able to:</p>
+<ul>
+<li>Explain how <code>SUB</code>, <code>TAG</code>, <code>NUM</code>, and <code>SOI</code> describe the same filing.</li>
+<li>Collapse multiple SOI facts into one investment while preserving source rows.</li>
+<li>Apply structural cleaning rules without tuning them to the filed total.</li>
+<li>Reconcile holdings to each fund&#39;s disclosed fair value.</li>
+<li>Test a sample against the human-readable filing on SEC EDGAR.</li>
+<li>Rebuild every output with DVC and consume it through a separate UI and API.</li>
+</ul>
+<p>The release used here is <code>2026q3</code>, assembled from the SEC monthly files <code>2026_07</code>, <code>2026_08</code>, and <code>2026_09</code>. The panel deliberately excludes cash and money-market lines because they are not borrower investments.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Part 0 — Acquire and verify the SEC release" duration="5">
+        <p><strong>Goal:</strong> restore the three raw SEC files and prove that their hashes match the committed manifest.</p>
+<p>Install the project once:</p>
+<pre><code language="language-bash" class="language-bash">python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+</code></pre>
+<p>Restore the DVC-tracked raw release:</p>
+<pre><code language="language-bash" class="language-bash">dvc pull
+</code></pre>
+<p>Inspect the release configuration and manifest:</p>
+<pre><code language="language-bash" class="language-bash">cat params.yaml
+cat data/manifest.json
+</code></pre>
+<p>Expected configuration:</p>
+<pre><code language="language-text" class="language-text">release: 2026q3
+release_months: 2026_07, 2026_08, 2026_09
+use_fixture: false
+</code></pre>
+<p>The manifest records one SHA-256 per monthly ZIP. <code>scripts/acquire.py</code> downloads, unpacks, verifies, and combines those files into <code>data/raw/2026q3_bdc/</code>. Raw data belongs in DVC, not Git.</p>
+<p><strong>What could go wrong:</strong> a stale manifest or an interrupted download will fail the hash check. Do not bypass that check; remove the bad DVC checkout and run <code>dvc pull</code> again.</p>
+<p>Positive : A valid release has 182 SUB rows and 197,160 SOI rows before period filtering.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Part 1 — Parse, map, and coalesce holdings" duration="7">
+        <p><strong>Goal:</strong> turn long-form XBRL facts into one current-period holding per filing and investment identifier.</p>
+<p>Run the parse stage:</p>
+<pre><code language="language-bash" class="language-bash">dvc repro parse
+</code></pre>
+<p>Inspect what the stage printed. The verified release has:</p>
+<ul>
+<li>182 filings in <code>SUB</code>;</li>
+<li>101,220 current SOI rows;</li>
+<li>68,175 candidate holdings after coalescing;</li>
+<li>9,599 candidates assembled from more than one SOI row.</li>
+</ul>
+<p>Inspect one source row:</p>
+<pre><code language="language-bash" class="language-bash">python - &lt;&lt;&#39;PY&#39;
+import yaml
+from src.lookthrough import load, mapping, paths
+
+params = paths.load_params(&#34;.&#34;)
+release_dir = paths.release_dir(params, &#34;.&#34;)
+header = load.soi_header(release_dir)
+tags = load.load_tag(release_dir)
+columns = mapping.map_soi_columns(header, tags)
+soi = load.load_soi(release_dir, mapping.soi_usecols(header, columns))
+print(soi[[&#34;adsh&#34;, &#34;soi_row&#34;, &#34;Investment, Identifier Axis&#34;,
+           &#34;Investment Owned, Fair Value&#34;]].head().to_string())
+PY
+</code></pre>
+<p>The important provenance rule is that <code>source_rows</code> retains every original SOI row. A coalesced holding is still traceable to the machine evidence that created it.</p>
+<p><strong>What could go wrong:</strong> summing every SOI date mixes comparative schedules into the current period. <code>holdings.split_periods</code> compares each row date with the filing period from <code>SUB</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Part 2 — Clean with structural rules" duration="8">
+        <p><strong>Goal:</strong> remove totals, duplicated issuer summaries, and liquidity lines using signals visible in the row itself.</p>
+<p>Run:</p>
+<pre><code language="language-bash" class="language-bash">dvc repro clean
+</code></pre>
+<p>Open <code>reports/cleaning_log.csv</code> and <code>docs/cleaning_log.md</code>.</p>
+<p>The rules run in this order:</p>
+<ol type="1">
+<li><code>rule_totals</code> removes explicit total, subtotal, and category-only labels.</li>
+<li><code>rule_issuer_aggregates</code> removes a short issuer row when a detailed instrument row for the same issuer also exists in that filing.</li>
+<li><code>rule_cash</code> removes explicit cash and money-market lines.</li>
+</ol>
+<p>Coverage is calculated after each rule for reporting, but it never selects a pattern or changes the rule order. In the verified release the reported dollar coverage moves from 27.1% before the three structural rules to 28.8%, 40.0%, and then 42.1% after cash exclusion.</p>
+<p>Inspect the logged examples:</p>
+<pre><code language="language-bash" class="language-bash">python - &lt;&lt;&#39;PY&#39;
+import pandas as pd
+
+log = pd.read_csv(&#34;reports/cleaning_log.csv&#34;)
+print(log[[&#34;rule&#34;, &#34;example_adsh&#34;, &#34;example_soi_row&#34;,
+           &#34;rows_affected&#34;, &#34;coverage_before&#34;, &#34;coverage_after&#34;]]
+      .to_string(index=False))
+PY
+</code></pre>
+<p><strong>What could go wrong:</strong> a rule tuned to one fund&#39;s reconciliation gap will break another filing. Each rule&#39;s motivation must make sense from the identifier structure alone.</p>
+<p>Negative : Cash is excluded uniformly. A filer that includes cash in its filed total will remain outside tolerance and must be triaged with evidence.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Part 3 — Reconcile and report coverage" duration="7">
+        <p><strong>Goal:</strong> compare every attempted filing with its own undimensioned <code>InvestmentOwnedAtFairValue</code> fact and retain every exclusion.</p>
+<p>Run the remaining stages:</p>
+<pre><code language="language-bash" class="language-bash">dvc repro reconcile report
+PYTHONPATH=src python -m lookthrough.check
+</code></pre>
+<p>Expected verified summary:</p>
+<pre><code language="language-text" class="language-text">88 of 177 attempted filings admitted (49.7%)
+$234,366,032,543 of $556,908,483,659 filed fair value admitted (42.1%)
+5 filings with no SOI rows reported separately
+10/10 self-checks pass
+</code></pre>
+<p>Inspect the outputs:</p>
+<ul>
+<li><code>outputs/panel/holdings.parquet</code> contains 33,222 investment holdings.</li>
+<li><code>reports/coverage.csv</code> contains one row for every attempted filing.</li>
+<li><code>reports/coverage.json</code> is the DVC metric used by the API.</li>
+<li><code>reports/triage.md</code> explains every exclusion.</li>
+</ul>
+<p>Every summary number must include both filing coverage and dollar coverage. Filing counts alone make a small admitted filing look equivalent to a large one.</p>
+<p><strong>What could go wrong:</strong> building the reconciliation universe from the panel drops filings with zero identifiable holdings. The implementation starts from all filings with SOI rows and explicitly reports the five filings with no SOI rows.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Part 4 — Verify against the human-readable filing" duration="8">
+        <p><strong>Goal:</strong> test whether panel values match the filing narrative rather than merely matching another copy of the same SOI data.</p>
+<p>Run the dependency verifier:</p>
+<pre><code language="language-bash" class="language-bash">python scripts/verify_dependency.py
+</code></pre>
+<p>The verifier:</p>
+<ol type="1">
+<li>samples nine admitted filings with diverse structure and size;</li>
+<li>fetches each primary HTML filing from SEC EDGAR;</li>
+<li>reads identifier-matched fair value and principal facts from the document;</li>
+<li>compares those values with the committed panel; and</li>
+<li>checks the data release&#39;s <code>NUM</code> facts only when diagnosing disagreement.</li>
+</ol>
+<p>Expected result:</p>
+<pre><code language="language-text" class="language-text">match: 30
+rounding_or_units: 0
+panel_error: 0
+source_error: 0
+unresolved: 0
+</code></pre>
+<p>Open <code>reports/spot_check.csv</code> and choose one <code>source_url</code>. Confirm the displayed holding and value occur in the filing. The sample covers admitted filings only; it is not evidence that every excluded filing should be forced into the panel.</p>
+<p><strong>What could go wrong:</strong> using the panel&#39;s own <code>SOI</code> values for the &#34;filing&#34; side makes the test circular. The human-readable SEC document is the independent source in this step.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Part 5 — Reproduce, measure, and serve" duration="8">
+        <p><strong>Goal:</strong> rebuild the complete pipeline, run the test suite, and consume the result through separate serving layers.</p>
+<p>Run the complete contract:</p>
+<pre><code language="language-bash" class="language-bash">dvc repro
+dvc status
+dvc metrics show
+PYTHONPATH=src python -m lookthrough.check
+pytest -q
+</code></pre>
+<p>Generate the compact API bundle:</p>
+<pre><code language="language-bash" class="language-bash">python scripts/export_app_data.py
+</code></pre>
+<p>Run the local backend and static UI:</p>
+<pre><code language="language-bash" class="language-bash">PYTHONPATH=. uvicorn app.api.main:app --port 8000
+python serve_web.py
+</code></pre>
+<p>Open:</p>
+<ul>
+<li>UI: <code>http://127.0.0.1:3000</code></li>
+<li>API documentation: <code>http://127.0.0.1:8000/docs</code></li>
+<li>Codelab: <code>http://127.0.0.1:3000/codelab/</code></li>
+</ul>
+<p>The public deployment uses the same separation:</p>
+<ul>
+<li>Replit serves <code>app/web/</code> and the generated static codelab.</li>
+<li>Vercel serves the read-only FastAPI backend and compact JSON data.</li>
+<li><code>app/web/config.js</code> or the Replit <code>LANTERN_API_BASE</code> environment variable points the static UI at the backend.</li>
+</ul>
+<p>The economic report in <code>reports/economics.md</code> states measured wall-clock values, its compute-rate assumption, and the linear scale extrapolation. Re-run the measurement on your own hardware before quoting speed as a universal result.</p>
+<p><strong>What could go wrong:</strong> the UI and API are intentionally deployable separately. If the UI loads but shows a network error, check the API base URL and backend CORS configuration before changing the data.</p>
+<p>Positive : A correct full run leaves <code>dvc status</code> clean, the self-check at 10/10, and all tests passing.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

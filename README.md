@@ -1,92 +1,257 @@
-# Lab 2B starter kit: Look-Through (SEC BDC data sets)
+# Project LANTERN — Case Study 2B
 
-DAMG 7245, Fall 2026. Companion to the Tool Tutorial Part 2B deck, the BDC Primer and Case Study 2B.
+DAMG 7245, Fall 2026. Project LANTERN turns the SEC's 2026 Q3 Business
+Development Company (BDC) data release into a traceable, reproducible
+look-through holdings panel. It reconciles 177 filings to each fund's disclosed
+fair value, explains every excluded filing, verifies sampled holdings against
+the human-readable filing on EDGAR, and serves the result through a read-only UI
+and API.
 
-## Setup (10 minutes)
-Copy this folder into your team's Case Study 1 repository as `cs2b/`, and run everything from inside it.
+**Team:** Dany, Julio Sepulveda, and Kahan (`kahan15`)
+
+- Public UI: `<REPLIT_UI_URL>`
+- API: <https://lantern-lab2b.vercel.app>
+- API documentation: <https://lantern-lab2b.vercel.app/docs>
+- Codelab: `<REPLIT_UI_URL>/codelab/`
+- DVC remote: [DVC remote access](#dvc-remote-access)
+
+The panel contains investment holdings and deliberately excludes cash and
+money-market lines. Coverage is **88 of 177 attempted filings (49.7%)** and
+**$234.4B of $556.9B filed fair value (42.1%)**. The remaining filings stay
+visible in the coverage and triage reports rather than being forced into the
+panel.
+
+## Architecture
+
+```mermaid
+flowchart LR
+  SEC[SEC monthly BDC ZIPs] --> acquire[0 · acquire]
+  acquire --> raw[(DVC raw release)]
+  raw --> parse[1 · parse and coalesce]
+  parse --> canonical[Canonical holdings]
+  canonical --> clean[2 · structural cleaning]
+  clean --> reconciled[3 · reconcile and report]
+  reconciled --> panel[Admitted holdings panel]
+  reconciled --> evidence[Coverage and triage]
+  panel --> verify[4 · EDGAR dependency checks]
+  evidence --> verify
+  panel --> economics[5 · economics, tests, pipeline]
+  evidence --> economics
+  panel --> export[Compact app export]
+  evidence --> export
+  export --> api[FastAPI · Vercel]
+  api --> ui[Static UI · Replit]
+  ui --> codelab[claat codelab · Replit]
 ```
-cd cs2b
-python -m venv .venv && source .venv/bin/activate      # Python 3.10 or later
-pip install -r requirements.txt
-jupyter lab                                             # open notebooks/00_setup.ipynb
-```
-Then set `sec.user_agent` (your name and email) and your team's `release` in `params.yaml`.
 
-## Work through, in order
-| Notebook | Step |
-|---|---|
-| 00_setup | Environment, parameters, tests |
-| 01_primer_exercise | One holding, from flat file to filing |
-| 02_acquire | Download your release, manifest, DVC (switches you to real data) |
-| 03_raw_parse | SUB, TAG, NUM and SOI; map columns by tag |
-| 04_periods_and_dimensions | Dates, current vs comparative schedules, segments, coalescing |
-| 05_clean | Find artifacts, write rules, keep a cleaning log |
-| 06_reconcile | Reconcile to filed totals, coverage, triage, outputs, self-check |
-| 07_verify_dependency | Spot-check against the filings; optional EdgarTools comparison |
-| 08_pipeline_and_economics | Tests that fail, timing, unit economics, DVC pipeline |
+The data pipeline and serving layers are independent. `app/` is not a
+dependency of `dvc.yaml`; breaking or redeploying the UI does not change the
+analytical panel.
 
-You start in **fixture mode** (`data.use_fixture: true`): a synthetic release in the SEC's layout, with fictional BDCs, so everything runs offline. Notebook 02 switches you to your real release.
+## Part-to-code map
 
-## Checks
-```
-python tests/run_tests.py                 # or: pytest -q
-python tools/run_notebooks.py             # runs every notebook's code in order
-PYTHONPATH=src python -m lookthrough.check   # Case Study 2B self-check on your outputs
-python tools/smoke_real.py <release> "Name email"   # baseline on any real release (needs network)
-```
+| Part | Purpose | Code and configuration | Reports and outputs |
+|---|---|---|---|
+| 0 | Acquire the three SEC monthly releases and verify hashes | `scripts/acquire.py`, `src/lookthrough/acquire.py`, `src/lookthrough/quarter.py`, `params.yaml`, `data/manifest.json` | `data/raw/` (DVC), `dvc.lock` |
+| 1 | Parse SUB/TAG/NUM/SOI, map dimensions, preserve source rows, and coalesce current-period holdings | `scripts/parse.py`, `src/lookthrough/load.py`, `mapping.py`, `holdings.py`, `coalesce.py` | `outputs/canonical/holdings.parquet`, `reports/periods.csv`, `reports/conflicts.csv`, `docs/schema.md` |
+| 2 | Apply structural rules for totals, issuer aggregates, and cash lines | `scripts/clean.py`, `src/lookthrough/clean.py` | `outputs/cleaned/holdings.parquet`, `reports/cleaning_log.csv`, `docs/cleaning_log.md`, `tests/test_cleaning_real_release.py` |
+| 3 | Reconcile to filed fair value, admit within tolerance, and keep every exclusion visible | `scripts/reconcile.py`, `scripts/report.py`, `src/lookthrough/reconcile.py`, `report.py` | `outputs/panel/holdings.parquet`, `reports/coverage.csv`, `coverage.md`, `coverage.json`, `triage.md` |
+| 4 | Compare sampled panel values with the human-readable EDGAR filing and audit issuer-aggregate removals | `scripts/verify_dependency.py`, `tests/test_lookthrough.py` | `reports/spot_check.csv`, `dependency_check.md`, `aggregate_audit.md` |
+| 5 | Reproduce the pipeline, test failure modes, measure economics, and serve the result | `dvc.yaml`, `tests/`, `scripts/export_app_data.py`, `app/api/`, `app/web/`, `serve_web.py` | `reports/economics.md`, `reports/tests_that_fail.md`, `reports/app_tests_that_fail.md`, UI/API/codelab |
 
-## Layout
-`src/lookthrough/` helpers (paths, acquire, load, mapping, holdings, clean, reconcile, pipeline, report, tables, check);
-`data/fixture/` the synthetic release (rebuild with `python tools/make_fixture.py`); `data/raw/` your release (DVC, never Git);
-`outputs/panel/` the reconciled panel; `reports/` coverage, triage, cleaning log, spot checks; `docs/` schema and pipeline notes.
+## Serving layer
 
-## Analytical scope
+The serving architecture has three independent public components:
 
-The output panel represents investment holdings used for a borrower-to-BDC
-relationship view and deliberately excludes cash and money-market lines. A
-money-market fund is not a company borrower. Because filers differ on whether
-cash is included in their filed investment total, the exclusion is applied
-uniformly at the panel-scope level and cash-related filing differences remain
-visible in the triage report.
+| Component | Host | Responsibility |
+|---|---|---|
+| UI | Replit | Serves the five-page static browser application and `/codelab/`; calls the public Vercel API |
+| API | Vercel | Serves compact JSON exports through read-only FastAPI routes and Swagger |
+| Codelab | Replit, `/codelab/` | Serves the static site generated by `claat` from `docs/codelab.md` |
 
-## Data
-Public data only: the SEC BDC data sets (https://www.sec.gov/data-research/sec-markets-data/bdc-data-sets) and the SEC BDC readme (https://www.sec.gov/files/bdc_readme.pdf). Fixture data is synthetic.
+The UI uses `app/web/config.js`. Replit overrides `LANTERN_API_BASE` in
+`[.replit](.replit)` so the frontend points to
+`https://lantern-lab2b.vercel.app/api`. The API accepts read-only GET requests
+from Replit-hosted frontends through a restricted CORS origin expression.
 
-## Read-only app and code lab
-
-The 2026 Q3 application is an additive read-only view of the completed panel.
-It does not change the DVC pipeline or any existing report.
-
-Install the two web runtime packages in the existing environment, then generate
-the compact app data and start the API and static site in separate terminals:
+Local development:
 
 ```bash
-pip install -r app/api/requirements.txt
-pip install "uvicorn>=0.30,<1"
 python scripts/export_app_data.py
-PYTHONPATH=. .venv/bin/uvicorn app.api.main:app --reload --port 8000
-.venv/bin/python -m http.server 8001 --directory app/web
+PYTHONPATH=. uvicorn app.api.main:app --reload --port 8000
+python serve_web.py
 ```
 
-Open `http://127.0.0.1:8001` for the five-page site and
-`http://127.0.0.1:8000/docs` for Swagger. The generated `app/data/` directory is
-ignored by Git because the 88 per-filing JSON exports are about 20 MiB.
+Open:
 
-The end-to-end code lab is in
-[`docs/codelab/README.md`](docs/codelab/README.md), with its executed notebook at
-[`notebooks/codelab.ipynb`](notebooks/codelab.ipynb). It is not a dependency of
-`dvc.yaml`.
+- UI: <http://127.0.0.1:3000>
+- Codelab: <http://127.0.0.1:3000/codelab/>
+- Swagger: <http://127.0.0.1:8000/docs>
 
-### Deployment
+`serve_web.py` serves only static files. It does not import pandas, PyArrow, or
+the pipeline, and it does not expose DVC data or credentials.
 
-Vercel is used because it can route the static five-page site and the FastAPI
-function without Replit-specific setup. The production app is
-<https://lantern-lab2b.vercel.app>, Swagger is
-<https://lantern-lab2b.vercel.app/docs>. Vercel creates authenticated preview
-deployments for pull requests; use the current preview from Vercel rather than
-treating a fixed, account-protected preview URL as a public API test target.
+## Setup (once)
 
-The `buildCommand` regenerates the compact app data before deployment.
-`vercel.json` excludes the local DVC data, virtual environment and reports from
-the API bundle, and routes `/api` plus `/docs` to FastAPI while every other path
-serves `app/web`.
+Prerequisites are Python 3.11 or newer, Git, and access to the project's DVC
+remote. Homebrew users can install:
+
+```bash
+brew install python git dvc
+```
+
+Create the local environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Configure the SEC user agent in `params.yaml`. It must contain a real name and
+email address. Never commit cloud credentials or tokens.
+
+Restore the raw release:
+
+```bash
+dvc pull
+```
+
+Build every derived output:
+
+```bash
+dvc repro
+python scripts/export_app_data.py
+```
+
+Build the published codelab:
+
+```bash
+brew install go
+go install github.com/googlecodelabs/tools/claat@latest
+cd docs
+"$(go env GOPATH)/bin/claat" export codelab.md
+```
+
+The export writes `docs/lantern-case-study-2b/`. Commit both the Markdown source
+and generated site whenever the codelab changes.
+
+## Reproduction (grader contract)
+
+```bash
+git clone https://github.com/codeofduty3/lantern-lab2b.git
+cd lantern-lab2b
+git checkout integration/cs2b-final
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+dvc pull
+dvc repro
+dvc status
+dvc metrics show
+PYTHONPATH=src python -m lookthrough.check
+pytest -q
+python scripts/export_app_data.py
+```
+
+Expected analytical contract:
+
+```text
+Panel rows: 33,222
+Total fair value: $234,404,394,079
+Admitted filings: 88 of 177
+Admitted filed fair value: $234,366,032,543 of $556,908,483,659
+Self-check: 10/10 PASS
+Tests: all pass
+DVC status: clean
+```
+
+The pipeline outputs are not stored in the DVC cache (`cache: false`). A fresh
+clone restores the raw release with `dvc pull`, then rebuilds outputs with
+`dvc repro`.
+
+## DVC remote access
+
+The default remote is:
+
+```bash
+dvc remote list
+# storage  s3://damg7245-codeofduty3/lantern-lab2b (default)
+```
+
+The S3 remote requires AWS credentials with read access. The reviewed
+environment used an existing AWS login session; no credentials are stored in
+Git or DVC metadata. `requirements.txt` includes `dvc-s3` and
+`botocore[crt]` so both the remote plugin and the AWS login credential provider
+are available in a fresh environment.
+
+```bash
+aws login
+dvc pull
+```
+
+To publish new DVC-tracked inputs, use an account with write access and run
+`dvc push`. Derived reports and the panel are rebuilt rather than pushed.
+
+## Reports
+
+| Report | What it establishes |
+|---|---|
+| [`reports/coverage.md`](reports/coverage.md) | Filing-level and dollar-level coverage for every attempted filing |
+| [`reports/triage.md`](reports/triage.md) | Gap, category, example, evidence, and reason for every exclusion |
+| [`docs/cleaning_log.md`](docs/cleaning_log.md) | Rule motivation, examples, affected-row counts, and coverage effect |
+| [`reports/cleaning_log.csv`](reports/cleaning_log.csv) | Machine-readable transformation and rule log |
+| [`reports/dependency_check.md`](reports/dependency_check.md) | Independent EDGAR comparison method and results |
+| [`reports/spot_check.csv`](reports/spot_check.csv) | Thirty sampled holdings with filing URLs, quoted evidence, and classifications |
+| [`reports/aggregate_audit.md`](reports/aggregate_audit.md) | Twenty-row audit of `rule_issuer_aggregates` across ten filings |
+| [`reports/economics.md`](reports/economics.md) | Measured latency, stated cost assumptions, manual effort, quality, and scale |
+| [`reports/tests_that_fail.md`](reports/tests_that_fail.md) | Production mutations and the tests that detected them |
+| [`docs/codelab.md`](docs/codelab.md) | claat source for the public step-by-step tutorial |
+
+## Data and analytical boundaries
+
+The release is public SEC data:
+
+- <https://www.sec.gov/data-research/sec-markets-data/bdc-data-sets>
+- <https://www.sec.gov/files/bdc_readme.pdf>
+
+The panel supports a borrower-to-BDC relationship view. It does **not** claim
+cross-BDC borrower matching, cross-period identity, or credit signals.
+
+The three monthly files `2026_07`, `2026_08`, and `2026_09` are combined into
+the assigned `2026q3` release. Full filing coverage is not forced: excluded
+filings retain their reconciliation gap and structural evidence.
+
+Raw data, `data/cache`, and generated `app/data` stay out of Git. The compact
+app export is generated during Vercel deployment.
+
+## Generative AI disclosure
+
+Generative AI tools were used as drafting, coding, testing, and review
+assistants. Codex and ChatGPT helped inspect repository state, propose
+diagnostic checks, draft implementation changes, organize documentation, and
+review report consistency. AI tools were also used to help construct and edit
+the claat tutorial and serving-layer configuration.
+
+The tools are not authors or independent evidence sources. Pipeline outputs
+come from the SEC release and code in this repository. Reported counts and
+dollar values were reproduced with DVC, checked with
+`lookthrough.check`, and exercised with pytest. Human-readable filing checks
+come from SEC EDGAR, not from an AI response. The team remains responsible for
+reviewing, correcting, and validating all committed work.
+
+## Attestation
+
+WE ATTEST THAT WE HAVEN'T USED ANY OTHER STUDENTS' WORK IN OUR ASSIGNMENT AND
+ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK.
+
+| Member | Contribution | Share |
+|---|---|---:|
+| Dany | Part 2 cleaning rules and tests; Part 4 EDGAR verification and aggregate audit; read-only API/UI and codelab; integration and release hardening | 33.333% |
+| Julio Sepulveda | Project scaffold and settings; Part 0 SEC acquisition, manifest, and DVC setup; initial pipeline stages and economics support | 33.333% |
+| Kahan (`kahan15`) | Part 3 reconciliation, coverage, triage, outputs, and pull-request integration | 33.333% |
+
+All members reviewed and share responsibility for the submitted result.
